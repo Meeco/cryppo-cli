@@ -1,0 +1,10 @@
+{
+  "extends": ["oclif", "oclif-typescript"],
+  "rules": {
+    "description": "Rules conflicting with prettier:",
+    "semi": "off",
+    "object-curly-spacing": "off",
+    "comma-dangle": "off",
+    "indent": "off"
+  }
+}
