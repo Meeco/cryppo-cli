@@ -10,9 +10,10 @@ Meeco encryption library
 [![License](https://img.shields.io/npm/l/cryppo-cli.svg)](https://github.com/Meeco/cryppo-cli/blob/master/package.json)
 
 <!-- toc -->
-* [Usage](#usage)
-* [Commands](#commands)
-<!-- tocstop -->
+
+- [Usage](#usage)
+- [Commands](#commands)
+  <!-- tocstop -->
 
 # Usage
 
@@ -28,27 +29,29 @@ hello world
 ```
 
 <!-- usage -->
+
 ```sh-session
 $ npm install -g cryppo-cli
 $ cryppo COMMAND
 running command...
 $ cryppo (-v|--version|version)
-cryppo-cli/0.0.1 darwin-x64 node-v12.4.0
+cryppo-cli/0.0.1 darwin-x64 node-v10.16.0
 $ cryppo --help [COMMAND]
 USAGE
   $ cryppo COMMAND
 ...
 ```
+
 <!-- usagestop -->
 
 # Commands
 
 <!-- commands -->
-* [`cryppo decrypt`](#cryppo-decrypt)
-* [`cryppo encrypt`](#cryppo-encrypt)
-* [`cryppo genkey`](#cryppo-genkey)
-* [`cryppo hello [FILE]`](#cryppo-hello-file)
-* [`cryppo help [COMMAND]`](#cryppo-help-command)
+
+- [`cryppo decrypt`](#cryppo-decrypt)
+- [`cryppo encrypt`](#cryppo-encrypt)
+- [`cryppo genkey`](#cryppo-genkey)
+- [`cryppo help [COMMAND]`](#cryppo-help-command)
 
 ## `cryppo decrypt`
 
@@ -64,7 +67,7 @@ OPTIONS
   -s, --serialized=serialized  (required) serialized encrypted value
 
 EXAMPLE
-  cryppo decrypt -s 
+  cryppo decrypt -s
   "Aes256Gcm.gSAByGMq4edzM0U=.LS0tCml2OiAhYmluYXJ5IHwtCiAgaW1QL09qMWZ6eWw0cmwwSgphdDogIWJpbmFyeSB8LQogIE5SbjZUQXJ2bitNS1
   Z5M0FpZEpmWlE9PQphZDogbm9uZQo=" -k vm8CjugMda2zdjsI9W25nH-CY-84DDYoBxTFLwfKLDk=
 ```
@@ -108,26 +111,6 @@ EXAMPLES
 
 _See code: [src/commands/genkey.ts](https://github.com/Meeco/cryppo-cli/blob/v0.0.1/src/commands/genkey.ts)_
 
-## `cryppo hello [FILE]`
-
-describe the command here
-
-```
-USAGE
-  $ cryppo hello [FILE]
-
-OPTIONS
-  -f, --force
-  -h, --help       show CLI help
-  -n, --name=name  name to print
-
-EXAMPLE
-  $ cryppo hello
-  hello world from ./src/hello.ts!
-```
-
-_See code: [src/commands/hello.ts](https://github.com/Meeco/cryppo-cli/blob/v0.0.1/src/commands/hello.ts)_
-
 ## `cryppo help [COMMAND]`
 
 display help for cryppo
@@ -144,4 +127,5 @@ OPTIONS
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.2.3/src/commands/help.ts)_
+
 <!-- commandsstop -->

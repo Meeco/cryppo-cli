@@ -9,7 +9,7 @@ export default class Genkey extends Command {
   static flags = {
     length: flags.integer({
       char: 'l',
-      description: `length of the key to generate (defaults to 32 - cryppo's default)`
+      description: "length of the key to generate (defaults to 32 - cryppo's default)"
     })
   };
 

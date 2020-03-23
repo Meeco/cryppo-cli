@@ -1,11 +1,27 @@
 {
   "extends": ["oclif", "oclif-typescript"],
   "rules": {
-    "description": "Rules conflicting with prettier:",
-    "semi": "off",
-    "object-curly-spacing": "off",
-    "comma-dangle": "off",
-    "indent": "off",
-    "quotes": "off"
+    "semi": ["warn", "always"],
+    "semi-spacing": [
+      "warn",
+      {
+        "before": false,
+        "after": true
+      }
+    ],
+    "comma-dangle": [
+      "error",
+      {
+        "arrays": "never",
+        "objects": "never",
+        "imports": "never",
+        "exports": "never",
+        "functions": "never"
+      }
+    ],
+    "indent": ["warn", 2],
+    "no-use-before-define": ["error", { "functions": false, "classes": false }],
+    "@typescript-eslint/no-use-before-define": ["error", { "functions": false, "classes": false }],
+    "object-curly-spacing": ["warn", "always"]
   }
 }
