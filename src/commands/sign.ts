@@ -1,11 +1,7 @@
 import { signWithPrivateKey } from '@meeco/cryppo';
 import { binaryBufferToString } from '@meeco/cryppo/dist/src/util';
 import { Command, flags } from '@oclif/command';
-import { readFile, writeFile } from 'fs';
-import { promisify } from 'util';
-
-const read = promisify(readFile);
-const write = promisify(writeFile);
+import { readFileAsBuffer, writeFileContents } from '../util/file';
 
 export default class Sign extends Command {
   static description =
@@ -38,13 +34,13 @@ export default class Sign extends Command {
     const { args, flags } = this.parse(Sign);
     const { privateKeyFile } = flags;
     const { file, destination } = args;
-    const privateKey = await read(privateKeyFile);
-    const fileContents = await read(file);
+    const privateKey = await readFileAsBuffer(privateKeyFile);
+    const fileContents = await readFileAsBuffer(file);
     const signed = await signWithPrivateKey(
       binaryBufferToString(privateKey),
       binaryBufferToString(fileContents)
     );
-    await write(destination, signed.serialized);
+    await writeFileContents(destination, signed.serialized);
     this.log('Signed contents written');
   }
 }

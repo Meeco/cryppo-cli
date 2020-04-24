@@ -1,6 +1,7 @@
 import * as cryppo from '@meeco/cryppo';
 import { CipherStrategy } from '@meeco/cryppo';
 import { expect, test } from '@oclif/test';
+import * as file from '../../src/util/file';
 
 const mockEncryptedValue = 'Aes256Gcm.gSAByGMq4edzM0U=.LS0tCml';
 
@@ -10,8 +11,21 @@ describe('encrypt', () => {
     .stub(cryppo, 'encryptWithKey', mockEncrypt)
     .stdout()
     .command(['encrypt', '-k', mockKey, '-v', 'My Secret Data'])
-    .it('Encrypts data with the key', ctx => {
+    .it('Encrypts data with an AES key', ctx => {
       expect(ctx.stdout).to.contain(mockEncryptedValue);
+    });
+
+  test
+    .stub(cryppo, 'encryptWithPublicKey', ({ data, publicKeyPem }) =>
+      Promise.resolve({
+        serialized: `${data} encrypted w/ ${publicKeyPem}`
+      })
+    )
+    .stub(file, 'readFileAsBuffer', path => Promise.resolve(`${path} contents`))
+    .stdout()
+    .command(['encrypt', '-P', 'id_rsa.pub', '-v', 'My Secret Data'])
+    .it('Encrypts data with an RSA public key', ctx => {
+      expect(ctx.stdout).to.contain('My Secret Data encrypted w/ id_rsa.pub contents');
     });
 });
 

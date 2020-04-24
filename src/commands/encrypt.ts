@@ -1,10 +1,7 @@
 import { CipherStrategy, decodeSafe64, encryptWithKey, encryptWithPublicKey } from '@meeco/cryppo';
 import { binaryBufferToString } from '@meeco/cryppo/dist/src/util';
 import { Command, flags } from '@oclif/command';
-import { readFile } from 'fs';
-import { promisify } from 'util';
-
-const read = promisify(readFile);
+import { readFileAsBuffer } from '../util/file';
 
 export default class Encrypt extends Command {
   static description = 'Encrypt a serialized encrypted value';
@@ -42,7 +39,7 @@ export default class Encrypt extends Command {
       });
       this.log(encrypted.serialized);
     } else if (publicKeyFile) {
-      const publicKeyPem = binaryBufferToString(await read(publicKeyFile));
+      const publicKeyPem = binaryBufferToString(await readFileAsBuffer(publicKeyFile));
       const encrypted = await encryptWithPublicKey({
         data: value,
         publicKeyPem

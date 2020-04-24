@@ -1,10 +1,7 @@
 import { decodeSafe64, decryptSerializedWithPrivateKey, decryptWithKey } from '@meeco/cryppo';
 import { binaryBufferToString } from '@meeco/cryppo/dist/src/util';
 import { Command, flags } from '@oclif/command';
-import { readFile } from 'fs';
-import { promisify } from 'util';
-
-const read = promisify(readFile);
+import { readFileAsBuffer } from '../util/file';
 
 export default class Decrypt extends Command {
   static description = 'Decrypt a serialized encrypted value';
@@ -42,7 +39,7 @@ export default class Decrypt extends Command {
       const decrypted = await decryptWithKey({ serialized, key: decodedKey });
       this.log(decrypted);
     } else if (privateKeyFile) {
-      const privateKeyPem = binaryBufferToString(await read(privateKeyFile));
+      const privateKeyPem = binaryBufferToString(await readFileAsBuffer(privateKeyFile));
       const decrypted = await decryptSerializedWithPrivateKey({
         serialized,
         privateKeyPem

@@ -3,8 +3,6 @@ import { Command, flags } from '@oclif/command';
 import { writeFile } from 'fs';
 import { promisify } from 'util';
 
-const write = promisify(writeFile);
-
 export default class Genkeypair extends Command {
   static description = 'Generate a new RSA key pair, writing the private and public keys to files.';
 
@@ -21,6 +19,8 @@ export default class Genkeypair extends Command {
   };
 
   async run() {
+    const write = promisify(writeFile);
+
     const { flags } = this.parse(Genkeypair);
     const { bits, privateKeyOut, publicKeyOut } = flags;
 
