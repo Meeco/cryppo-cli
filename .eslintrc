@@ -19,6 +19,8 @@
         "functions": "never"
       }
     ],
+    "valid-jsdoc": 0,
+    "require-jsdoc": 0,
     "indent": ["warn", 2],
     "no-use-before-define": ["error", { "functions": false, "classes": false }],
     "@typescript-eslint/no-use-before-define": ["error", { "functions": false, "classes": false }],
