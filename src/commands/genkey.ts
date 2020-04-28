@@ -1,5 +1,6 @@
 import { encodeSafe64, generateRandomKey } from '@meeco/cryppo';
 import { Command, flags } from '@oclif/command';
+import { handleException } from '../handle-exception';
 
 export default class Genkey extends Command {
   static description = 'Generate a new (random) encryption key - printed as base64 encoded';
@@ -14,11 +15,15 @@ export default class Genkey extends Command {
   };
 
   async run() {
-    const { flags } = this.parse(Genkey);
+    try {
+      const { flags } = this.parse(Genkey);
 
-    const { length } = flags;
-    const key = await generateRandomKey(length);
-    this.log('URL-Safe Base64 encoded key:');
-    this.log(encodeSafe64(key));
+      const { length } = flags;
+      const key = await generateRandomKey(length);
+      this.log('URL-Safe Base64 encoded key:');
+      this.log(encodeSafe64(key));
+    } catch (error) {
+      handleException(error, this);
+    }
   }
 }

@@ -1,6 +1,7 @@
 import { CipherStrategy, decodeSafe64, encryptWithKey, encryptWithPublicKey } from '@meeco/cryppo';
 import { binaryBufferToString } from '@meeco/cryppo/dist/src/util';
 import { Command, flags } from '@oclif/command';
+import { handleException } from '../handle-exception';
 import { readFileAsBuffer } from '../util/file';
 
 export default class Encrypt extends Command {
@@ -28,25 +29,31 @@ export default class Encrypt extends Command {
   };
 
   async run() {
-    const { flags } = this.parse(Encrypt);
-    const { value, key, publicKeyFile } = flags;
-    if (key) {
-      const decodedKey = decodeSafe64(key);
-      const encrypted = await encryptWithKey({
-        data: value,
-        key: decodedKey,
-        strategy: CipherStrategy.AES_GCM
-      });
-      this.log(encrypted.serialized);
-    } else if (publicKeyFile) {
-      const publicKeyPem = binaryBufferToString(await readFileAsBuffer(publicKeyFile));
-      const encrypted = await encryptWithPublicKey({
-        data: value,
-        publicKeyPem
-      });
-      this.log(encrypted.serialized);
-    } else {
-      this.error('Must specify either base-64 encoded encryption key or RSA public key file path');
+    try {
+      const { flags } = this.parse(Encrypt);
+      const { value, key, publicKeyFile } = flags;
+      if (key) {
+        const decodedKey = decodeSafe64(key);
+        const encrypted = await encryptWithKey({
+          data: value,
+          key: decodedKey,
+          strategy: CipherStrategy.AES_GCM
+        });
+        this.log(encrypted.serialized);
+      } else if (publicKeyFile) {
+        const publicKeyPem = binaryBufferToString(await readFileAsBuffer(publicKeyFile));
+        const encrypted = await encryptWithPublicKey({
+          data: value,
+          publicKeyPem
+        });
+        this.log(encrypted.serialized);
+      } else {
+        this.error(
+          'Must specify either base-64 encoded encryption key or RSA public key file path'
+        );
+      }
+    } catch (error) {
+      await handleException(error, this);
     }
   }
 }
