@@ -1,6 +1,7 @@
 import { decodeSafe64, decryptSerializedWithPrivateKey, decryptWithKey } from '@meeco/cryppo';
 import { binaryBufferToString } from '@meeco/cryppo/dist/src/util';
 import { Command, flags } from '@oclif/command';
+import { handleException } from '../handle-exception';
 import { readFileAsBuffer } from '../util/file';
 
 export default class Decrypt extends Command {
@@ -32,21 +33,27 @@ export default class Decrypt extends Command {
   };
 
   async run() {
-    const { flags } = this.parse(Decrypt);
-    const { serialized, key, privateKeyFile } = flags;
-    if (key) {
-      const decodedKey = decodeSafe64(key);
-      const decrypted = await decryptWithKey({ serialized, key: decodedKey });
-      this.log(decrypted);
-    } else if (privateKeyFile) {
-      const privateKeyPem = binaryBufferToString(await readFileAsBuffer(privateKeyFile));
-      const decrypted = await decryptSerializedWithPrivateKey({
-        serialized,
-        privateKeyPem
-      });
-      this.log(decrypted);
-    } else {
-      this.error('Must specify either base-64 encoded encryption key or RSA private key file path');
+    try {
+      const { flags } = this.parse(Decrypt);
+      const { serialized, key, privateKeyFile } = flags;
+      if (key) {
+        const decodedKey = decodeSafe64(key);
+        const decrypted = await decryptWithKey({ serialized, key: decodedKey });
+        this.log(decrypted);
+      } else if (privateKeyFile) {
+        const privateKeyPem = binaryBufferToString(await readFileAsBuffer(privateKeyFile));
+        const decrypted = await decryptSerializedWithPrivateKey({
+          serialized,
+          privateKeyPem
+        });
+        this.log(decrypted);
+      } else {
+        this.error(
+          'Must specify either base-64 encoded encryption key or RSA private key file path'
+        );
+      }
+    } catch (error) {
+      await handleException(error, this);
     }
   }
 }
