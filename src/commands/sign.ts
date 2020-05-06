@@ -45,7 +45,7 @@ export default class Sign extends Command {
       await writeFileContents(destination, signed.serialized);
       this.log('Signed contents written');
     } catch (error) {
-      handleException(error, this);
+      await handleException(error, this);
     }
   }
 }

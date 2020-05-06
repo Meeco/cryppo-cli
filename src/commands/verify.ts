@@ -46,7 +46,7 @@ export default class Verify extends Command {
       }
       await writeFileContents(destination, rsaSignature.data);
     } catch (error) {
-      handleException(error, this);
+      await handleException(error, this);
     }
   }
 }

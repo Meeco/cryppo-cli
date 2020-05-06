@@ -32,7 +32,7 @@ export default class Genkeypair extends Command {
 
       this.log('Wrote new key pair');
     } catch (error) {
-      handleException(error, this);
+      await handleException(error, this);
     }
   }
 }

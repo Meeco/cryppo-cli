@@ -4,7 +4,7 @@ import { CLIError } from '@oclif/errors';
 export async function handleException<T>(err: any, instance: Command) {
   if (err instanceof CLIError) {
     // Error is already 'handled' by oclif pretty well so can just print as-is
-    throw err;
+    instance.error(err);
   }
   let message;
   /**
@@ -17,7 +17,7 @@ export async function handleException<T>(err: any, instance: Command) {
     message = prettifyMessage(err.message);
   }
 
-  return instance.error(message);
+  instance.error(message);
 }
 
 /**

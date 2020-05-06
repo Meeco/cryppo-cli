@@ -23,7 +23,7 @@ export default class Genkey extends Command {
       this.log('URL-Safe Base64 encoded key:');
       this.log(encodeSafe64(key));
     } catch (error) {
-      handleException(error, this);
+      await handleException(error, this);
     }
   }
 }
