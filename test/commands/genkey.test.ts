@@ -18,8 +18,8 @@ describe('genkey', () => {
     .stderr()
     .command(['genkey', '-l', '4'])
     .it('Provides a warning if an AES key length is specified', ctx => {
-      expect(ctx.stderr).to.contain(
-        'Warning: You have specified a key length of 4 bytes - AES only supports 128, 192 or 256 bit keys'
-      );
+      expect(ctx.stderr).to.contain('Warning: You have specified a key length of 4 bytes');
+      expect(ctx.stderr).to.contain('AES only supports');
+      expect(ctx.stderr).to.contain('128, 192 or 256 bit keys');
     });
 });
