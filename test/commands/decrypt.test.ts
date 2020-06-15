@@ -9,6 +9,8 @@ describe('decrypt', () => {
     'Aes256Gcm.gSAByGMq4edzM0U=.LS0tCml2OiAhYmluYXJ5IHwtCiAgaW1QL09qMWZ6eWw0cmwwSgphdDogIWJpbmFyeSB8LQogIE5SbjZUQXJ2bitNS1Z5M0FpZEpmWlE9PQphZDogbm9uZQo=';
   const rsaEncryptedValue = readFileSync(join(__dirname, './rsa_encrypted'), 'utf-8');
   const privateKeyPem = readFileSync(join(__dirname, './test_private_key.pem'), 'utf-8');
+  const fileStub: any = path =>
+    path === 'id_rsa' ? Promise.resolve(stringAsBinaryBuffer(privateKeyPem)) : Promise.reject();
   const base64Key = 'vm8CjugMda2zdjsI9W25nH-CY-84DDYoBxTFLwfKLDk=';
   test
     .stdout()
@@ -19,9 +21,7 @@ describe('decrypt', () => {
 
   test
     .stdout()
-    .stub(file, 'readFileAsBuffer', path =>
-      path === 'id_rsa' ? Promise.resolve(stringAsBinaryBuffer(privateKeyPem)) : Promise.reject()
-    )
+    .stub(file, 'readFileAsBuffer', fileStub)
     .command(['decrypt', '-p', 'id_rsa', '-s', rsaEncryptedValue])
     .it('Decrypts a value with an RSA private key', ctx => {
       expect(ctx.stdout).to.contain('hello world');
