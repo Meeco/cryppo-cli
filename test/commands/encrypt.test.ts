@@ -8,7 +8,7 @@ const mockEncryptedValue = 'Aes256Gcm.gSAByGMq4edzM0U=.LS0tCml';
 describe('encrypt', () => {
   const mockKey = cryppo.encodeSafe64('mockKey');
   test
-    .stub(cryppo, 'encryptWithKey', mockEncrypt)
+    .stub(cryppo, 'encryptWithKey', mockEncrypt as any)
     .stdout()
     .command(['encrypt', '-k', mockKey, '-v', 'My Secret Data'])
     .it('Encrypts data with an AES key', ctx => {
@@ -16,12 +16,11 @@ describe('encrypt', () => {
     });
 
   test
-    .stub(cryppo, 'encryptWithPublicKey', ({ data, publicKeyPem }) =>
+    .stub(cryppo, 'encryptWithPublicKey', (({ data, publicKeyPem }) =>
       Promise.resolve({
         serialized: `${data} encrypted w/ ${publicKeyPem}`
-      })
-    )
-    .stub(file, 'readFileAsBuffer', path => Promise.resolve(`${path} contents`))
+      })) as any)
+    .stub(file, 'readFileAsBuffer', (path => Promise.resolve(`${path} contents`)) as any)
     .stdout()
     .command(['encrypt', '-P', 'id_rsa.pub', '-v', 'My Secret Data'])
     .it('Encrypts data with an RSA public key', ctx => {

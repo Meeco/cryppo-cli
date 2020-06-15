@@ -12,7 +12,7 @@ describe('genkeypair', () => {
   test
     // Mocked so we get a deterministic value for testing
     .stub(cryppo, 'generateRSAKeyPair', stub().returns(Promise.resolve(mockKey)))
-    .stub(util, 'promisify', fn => fn)
+    .stub(util, 'promisify', (fn => fn) as any)
     .stub(fs, 'writeFile', stub().returns(Promise.resolve()))
     .stdout()
     .command(['genkeypair', '-b', '2048', '-p', 'id_rsa', '-P', 'id_rsa.pub'])
