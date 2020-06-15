@@ -10,10 +10,11 @@ Meeco Encryption Library CLI
 [![License](https://img.shields.io/npm/l/cryppo-cli.svg)](https://github.com/Meeco/cryppo-cli/blob/master/package.json)
 
 <!-- toc -->
-* [Cryppo CLI](#cryppo-cli)
-* [Usage](#usage)
-* [Commands](#commands)
-<!-- tocstop -->
+
+- [Cryppo CLI](#cryppo-cli)
+- [Usage](#usage)
+- [Commands](#commands)
+  <!-- tocstop -->
 
 # Usage
 
@@ -39,29 +40,32 @@ $ cryppo verify -P public.pem myfile.signed.txt myfile.txt
 ```
 
 <!-- usage -->
+
 ```sh-session
 $ npm install -g cryppo-cli
 $ cryppo COMMAND
 running command...
 $ cryppo (-v|--version|version)
-cryppo-cli/0.2.0 darwin-x64 node-v13.12.0
+cryppo-cli/0.2.1 darwin-x64 node-v12.4.0
 $ cryppo --help [COMMAND]
 USAGE
   $ cryppo COMMAND
 ...
 ```
+
 <!-- usagestop -->
 
 # Commands
 
 <!-- commands -->
-* [`cryppo decrypt`](#cryppo-decrypt)
-* [`cryppo encrypt`](#cryppo-encrypt)
-* [`cryppo genkey`](#cryppo-genkey)
-* [`cryppo genkeypair`](#cryppo-genkeypair)
-* [`cryppo help [COMMAND]`](#cryppo-help-command)
-* [`cryppo sign FILE DESTINATION`](#cryppo-sign-file-destination)
-* [`cryppo verify FILE DESTINATION`](#cryppo-verify-file-destination)
+
+- [`cryppo decrypt`](#cryppo-decrypt)
+- [`cryppo encrypt`](#cryppo-encrypt)
+- [`cryppo genkey`](#cryppo-genkey)
+- [`cryppo genkeypair`](#cryppo-genkeypair)
+- [`cryppo help [COMMAND]`](#cryppo-help-command)
+- [`cryppo sign FILE DESTINATION`](#cryppo-sign-file-destination)
+- [`cryppo verify FILE DESTINATION`](#cryppo-verify-file-destination)
 
 ## `cryppo decrypt`
 
@@ -78,13 +82,13 @@ OPTIONS
   -s, --serialized=serialized          (required) serialized encrypted value
 
 EXAMPLES
-  cryppo decrypt -s 
+  cryppo decrypt -s
   "Aes256Gcm.gSAByGMq4edzM0U=.LS0tCml2OiAhYmluYXJ5IHwtCiAgaW1QL09qMWZ6eWw0cmwwSgphdDogIWJpbmFyeSB8LQogIE5SbjZUQXJ2bitNS1
   Z5M0FpZEpmWlE9PQphZDogbm9uZQo=" -k vm8CjugMda2zdjsI9W25nH-CY-84DDYoBxTFLwfKLDk=
   cryppo decrypt -s "Rsa4096.bJjV2g_RBZKeyqBr-dSjPAc3qtkTgd0=.LS0tCnt9Cg==" -p private.pem
 ```
 
-_See code: [src/commands/decrypt.ts](https://github.com/Meeco/cryppo-cli/blob/v0.2.0/src/commands/decrypt.ts)_
+_See code: [src/commands/decrypt.ts](https://github.com/Meeco/cryppo-cli/blob/v0.2.1/src/commands/decrypt.ts)_
 
 ## `cryppo encrypt`
 
@@ -105,25 +109,25 @@ EXAMPLES
   encrypt -v "hello world" -P public-key.pem
 ```
 
-_See code: [src/commands/encrypt.ts](https://github.com/Meeco/cryppo-cli/blob/v0.2.0/src/commands/encrypt.ts)_
+_See code: [src/commands/encrypt.ts](https://github.com/Meeco/cryppo-cli/blob/v0.2.1/src/commands/encrypt.ts)_
 
 ## `cryppo genkey`
 
-Generate a new (random) encryption key - printed as base64 encoded
+Generate a new encryption key of random bytes with the specified length - printed as url-safe base64
 
 ```
 USAGE
   $ cryppo genkey
 
 OPTIONS
-  -l, --length=length  length of the key to generate (defaults to 32 - cryppo's default)
+  -l, --length=length  [default: 32] length of the key in bytes to generate (defaults to 32 bytes - cryppo's default)
 
 EXAMPLES
   cryppo genkey
-  cryppo genkey -l 64
+  cryppo genkey -l 16
 ```
 
-_See code: [src/commands/genkey.ts](https://github.com/Meeco/cryppo-cli/blob/v0.2.0/src/commands/genkey.ts)_
+_See code: [src/commands/genkey.ts](https://github.com/Meeco/cryppo-cli/blob/v0.2.1/src/commands/genkey.ts)_
 
 ## `cryppo genkeypair`
 
@@ -142,7 +146,7 @@ EXAMPLE
   cryppo genkeypair -p private.pem -P public.pem
 ```
 
-_See code: [src/commands/genkeypair.ts](https://github.com/Meeco/cryppo-cli/blob/v0.2.0/src/commands/genkeypair.ts)_
+_See code: [src/commands/genkeypair.ts](https://github.com/Meeco/cryppo-cli/blob/v0.2.1/src/commands/genkeypair.ts)_
 
 ## `cryppo help [COMMAND]`
 
@@ -180,7 +184,7 @@ EXAMPLE
   cryppo sign -p private.pem my_file.txt my_file.signed.txt
 ```
 
-_See code: [src/commands/sign.ts](https://github.com/Meeco/cryppo-cli/blob/v0.2.0/src/commands/sign.ts)_
+_See code: [src/commands/sign.ts](https://github.com/Meeco/cryppo-cli/blob/v0.2.1/src/commands/sign.ts)_
 
 ## `cryppo verify FILE DESTINATION`
 
@@ -201,5 +205,6 @@ EXAMPLE
   cryppo verify -P public.pem my_file.signed.txt my_file.txt
 ```
 
-_See code: [src/commands/verify.ts](https://github.com/Meeco/cryppo-cli/blob/v0.2.0/src/commands/verify.ts)_
+_See code: [src/commands/verify.ts](https://github.com/Meeco/cryppo-cli/blob/v0.2.1/src/commands/verify.ts)_
+
 <!-- commandsstop -->
