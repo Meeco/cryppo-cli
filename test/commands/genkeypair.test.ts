@@ -1,4 +1,4 @@
-import * as cryppo from '@meeco/cryppo';
+import cryppo from '../../src/cryppo-wrapper';
 import { expect, test } from '@oclif/test';
 import * as fs from 'fs';
 import { stub } from 'sinon';

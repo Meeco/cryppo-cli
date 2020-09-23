@@ -1,4 +1,4 @@
-import { encodeSafe64, generateRandomKey } from '@meeco/cryppo';
+import cryppo from '../cryppo-wrapper';
 import { Command, flags } from '@oclif/command';
 import { handleException } from '../handle-exception';
 
@@ -29,9 +29,9 @@ export default class Genkey extends Command {
         );
       }
 
-      const key = await generateRandomKey(length);
+      const key = await cryppo.generateRandomKey(length);
       this.log('URL-Safe Base64 encoded key:');
-      this.log(encodeSafe64(key));
+      this.log(cryppo.encodeSafe64(key));
     } catch (error) {
       await handleException(error, this);
     }
