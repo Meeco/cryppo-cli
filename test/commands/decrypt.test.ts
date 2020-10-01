@@ -1,4 +1,4 @@
-import { stringAsBinaryBuffer } from '@meeco/cryppo/dist/src/util';
+import { stringAsBinaryBuffer } from '@meeco/cryppo';
 import { expect, test } from '@oclif/test';
 import { readFileSync } from 'fs';
 import { join } from 'path';

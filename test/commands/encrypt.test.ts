@@ -1,5 +1,4 @@
-import * as cryppo from '@meeco/cryppo';
-import { CipherStrategy } from '@meeco/cryppo';
+import cryppo from '../../src/cryppo-wrapper';
 import { expect, test } from '@oclif/test';
 import * as file from '../../src/util/file';
 
@@ -31,7 +30,7 @@ describe('encrypt', () => {
 // Mocked because the actual encrypted value is not deterministic.
 function mockEncrypt({ data, key, strategy }) {
   expect(data).to.equal('My Secret Data');
-  expect(strategy).to.equal(CipherStrategy.AES_GCM);
+  expect(strategy).to.equal(cryppo.CipherStrategy.AES_GCM);
   expect(key).to.equal('mockKey'); // decoded
   const serialized = mockEncryptedValue;
   return Promise.resolve({

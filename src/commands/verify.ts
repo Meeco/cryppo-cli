@@ -1,4 +1,4 @@
-import { loadRsaSignature, verifyWithPublicKey } from '@meeco/cryppo';
+import cryppo from '../cryppo-wrapper';
 import { binaryBufferToString } from '@meeco/cryppo/dist/src/util';
 import { Command, flags } from '@oclif/command';
 import { handleException } from '../handle-exception';
@@ -37,8 +37,11 @@ export default class Verify extends Command {
       const { file, destination } = args;
       const publicKey = await readFileAsBuffer(publicKeyFile);
       const signed = await readFileAsBuffer(file);
-      const rsaSignature = await loadRsaSignature(binaryBufferToString(signed));
-      const verified = await verifyWithPublicKey(binaryBufferToString(publicKey), rsaSignature);
+      const rsaSignature = await cryppo.loadRsaSignature(binaryBufferToString(signed));
+      const verified = await cryppo.verifyWithPublicKey(
+        binaryBufferToString(publicKey),
+        rsaSignature
+      );
       if (verified) {
         this.log('Signature verified - writing file...');
       } else {

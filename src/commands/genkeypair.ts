@@ -1,4 +1,4 @@
-import { generateRSAKeyPair } from '@meeco/cryppo';
+import cryppo from '../cryppo-wrapper';
 import { Command, flags } from '@oclif/command';
 import { writeFile } from 'fs';
 import { promisify } from 'util';
@@ -26,7 +26,7 @@ export default class Genkeypair extends Command {
       const { flags } = this.parse(Genkeypair);
       const { bits, privateKeyOut, publicKeyOut } = flags;
 
-      const pair = await generateRSAKeyPair(bits);
+      const pair = await cryppo.generateRSAKeyPair(bits);
       await write(privateKeyOut, pair.privateKey);
       await write(publicKeyOut, pair.publicKey);
 

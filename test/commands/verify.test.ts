@@ -1,5 +1,5 @@
-import * as cryppo from '@meeco/cryppo';
-import { stringAsBinaryBuffer } from '@meeco/cryppo/dist/src/util';
+import cryppo from '../../src/cryppo-wrapper';
+import { stringAsBinaryBuffer } from '@meeco/cryppo';
 import { expect, test } from '@oclif/test';
 import { stub } from 'sinon';
 import * as file from '../../src/util/file';

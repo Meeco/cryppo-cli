@@ -1,4 +1,4 @@
-import { decodeSafe64, decryptSerializedWithPrivateKey, decryptWithKey } from '@meeco/cryppo';
+import cryppo from '../cryppo-wrapper';
 import { binaryBufferToString } from '@meeco/cryppo/dist/src/util';
 import { Command, flags } from '@oclif/command';
 import { handleException } from '../handle-exception';
@@ -37,12 +37,14 @@ export default class Decrypt extends Command {
       const { flags } = this.parse(Decrypt);
       const { serialized, key, privateKeyFile } = flags;
       if (key) {
-        const decodedKey = decodeSafe64(key);
-        const decrypted = await decryptWithKey({ serialized, key: decodedKey });
-        this.log(decrypted);
+        const decodedKey = cryppo.decodeSafe64(key);
+        const decrypted = await cryppo.decryptWithKey({ serialized, key: decodedKey });
+        if (decrypted) {
+          this.log(decrypted);
+        }
       } else if (privateKeyFile) {
         const privateKeyPem = binaryBufferToString(await readFileAsBuffer(privateKeyFile));
-        const decrypted = await decryptSerializedWithPrivateKey({
+        const decrypted = await cryppo.decryptSerializedWithPrivateKey({
           serialized,
           privateKeyPem
         });
