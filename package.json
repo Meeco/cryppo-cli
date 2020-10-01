@@ -1,14 +1,14 @@
 {
   "name": "cryppo-cli",
   "description": "Meeco encryption library",
-  "version": "0.2.2",
+  "version": "1.0.0",
   "author": "Meeco",
   "bin": {
     "cryppo": "./bin/run"
   },
   "bugs": "https://github.com/Meeco/cryppo-cli/issues",
   "dependencies": {
-    "@meeco/cryppo": "^0.8.0-beta",
+    "@meeco/cryppo": "^1.0.0",
     "@oclif/command": "^1.5.19",
     "@oclif/config": "^1.14.0",
     "@oclif/plugin-help": "^2.2.3",
