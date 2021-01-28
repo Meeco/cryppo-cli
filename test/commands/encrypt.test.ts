@@ -1,7 +1,7 @@
-import cryppo from '../../src/cryppo-wrapper';
-import { expect, test } from '@oclif/test';
-import * as file from '../../src/util/file';
 import { bytesToUtf8 } from '@meeco/cryppo';
+import { expect, test } from '@oclif/test';
+import cryppo from '../../src/cryppo-wrapper';
+import * as file from '../../src/util/file';
 
 const mockEncryptedValue = 'Aes256Gcm.gSAByGMq4edzM0U=.LS0tCml';
 
@@ -32,7 +32,7 @@ describe('encrypt', () => {
 function mockEncrypt({ data, key, strategy }) {
   expect(bytesToUtf8(data)).to.equal('My Secret Data');
   expect(strategy).to.equal(cryppo.CipherStrategy.AES_GCM);
-  // expect(key).to.be.an('EncryptionKey');
+  expect(key.serialize).to.equal(cryppo.encodeSafe64('mockKey'));
   const serialized = mockEncryptedValue;
   return Promise.resolve({
     serialized

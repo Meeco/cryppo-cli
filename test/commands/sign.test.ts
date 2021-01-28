@@ -10,11 +10,9 @@ describe('sign', () => {
     .stub(
       cryppo,
       'signWithPrivateKey',
-      stub().callsFake((pk, contents) =>
-        ({
-          serialized: `Sign.RSA.${bytesBufferToBinaryString(contents)}.${pk}`
-        })
-      )
+      stub().callsFake((pk, contents) => ({
+        serialized: `Sign.RSA.${bytesBufferToBinaryString(contents)}.${pk}`
+      }))
     )
     .stub(file, 'writeFileContents', stub().returns(Promise.resolve()))
     .stub(
@@ -31,6 +29,5 @@ describe('sign', () => {
 
       expect(write.getCall(0).args[0]).to.eql('my_file_signed');
       expect(write.getCall(0).args[1]).to.eql('Sign.RSA.my_file contents.id_rsa contents');
-
     });
 });

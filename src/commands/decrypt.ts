@@ -38,8 +38,7 @@ export default class Decrypt extends Command {
       const { serialized, key, privateKeyFile } = flags;
       if (key) {
         const decodedKey = EncryptionKey.fromSerialized(key);
-        const decrypted = await cryppo.decryptWithKey({ serialized,
-                                                        key: decodedKey });
+        const decrypted = await cryppo.decryptWithKey({ serialized, key: decodedKey });
         if (decrypted) {
           this.log(bytesBufferToBinaryString(decrypted));
         }

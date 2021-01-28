@@ -10,11 +10,9 @@ describe('verify', () => {
     .stub(
       cryppo,
       'loadRsaSignature',
-      stub().returns(
-        ({
-          data: 'signed_file_contents'
-        })
-      )
+      stub().returns({
+        data: 'signed_file_contents'
+      })
     )
     .stub(cryppo, 'verifyWithPublicKey', stub().returns(Promise.resolve(true)))
     .stub(file, 'writeFileContents', stub().returns(Promise.resolve()))

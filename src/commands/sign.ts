@@ -38,10 +38,7 @@ export default class Sign extends Command {
       const { file, destination } = args;
       const privateKey = await readFileAsBuffer(privateKeyFile);
       const fileContents = await readFileAsBuffer(file);
-      const signed = cryppo.signWithPrivateKey(
-        bytesBufferToBinaryString(privateKey),
-        fileContents
-      );
+      const signed = cryppo.signWithPrivateKey(bytesBufferToBinaryString(privateKey), fileContents);
       await writeFileContents(destination, signed.serialized);
       this.log('Signed contents written');
     } catch (error) {
