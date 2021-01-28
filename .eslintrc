@@ -9,6 +9,7 @@
         "after": true
       }
     ],
+    "operator-linebreak": ["error", "after", { "overrides": { "?": "before", ":": "before" } }],
     "comma-dangle": [
       "error",
       {

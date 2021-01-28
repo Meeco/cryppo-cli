@@ -12,8 +12,7 @@ export default class Genkey extends Command {
     length: flags.integer({
       char: 'l',
       default: 128,
-      description:
-        "length of the key in bytes to generate: 128, 192 or 256"
+      description: 'length of the key in bytes to generate: 128, 192 or 256'
     })
   };
 
