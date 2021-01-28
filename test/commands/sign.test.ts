@@ -1,7 +1,7 @@
-import cryppo from '../../src/cryppo-wrapper';
-import { binaryBufferToString, stringAsBinaryBuffer } from '@meeco/cryppo';
+import { bytesBufferToBinaryString, utf8ToBytes } from '@meeco/cryppo';
 import { expect, test } from '@oclif/test';
 import { stub } from 'sinon';
+import cryppo from '../../src/cryppo-wrapper';
 import * as file from '../../src/util/file';
 
 describe('sign', () => {
@@ -11,8 +11,8 @@ describe('sign', () => {
       cryppo,
       'signWithPrivateKey',
       stub().callsFake((pk, contents) =>
-        Promise.resolve({
-          serialized: `Sign.RSA.${binaryBufferToString(contents)}.${binaryBufferToString(pk)}`
+        ({
+          serialized: `Sign.RSA.${bytesBufferToBinaryString(contents)}.${pk}`
         })
       )
     )
@@ -20,7 +20,7 @@ describe('sign', () => {
     .stub(
       file,
       'readFileAsBuffer',
-      stub().callsFake(path => Promise.resolve(stringAsBinaryBuffer(`${path} contents`)))
+      stub().callsFake(path => Promise.resolve(utf8ToBytes(`${path} contents`)))
     )
     .stdout()
     .command(['sign', '-p', 'id_rsa', 'my_file', 'my_file_signed'])
@@ -31,5 +31,6 @@ describe('sign', () => {
 
       expect(write.getCall(0).args[0]).to.eql('my_file_signed');
       expect(write.getCall(0).args[1]).to.eql('Sign.RSA.my_file contents.id_rsa contents');
+
     });
 });

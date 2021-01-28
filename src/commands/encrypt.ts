@@ -1,6 +1,6 @@
-import cryppo from '../cryppo-wrapper';
-import { binaryBufferToString } from '@meeco/cryppo/dist/src/util';
+import { bytesBufferToBinaryString, EncryptionKey, utf8ToBytes } from '@meeco/cryppo';
 import { Command, flags } from '@oclif/command';
+import cryppo from '../cryppo-wrapper';
 import { handleException } from '../handle-exception';
 import { readFileAsBuffer } from '../util/file';
 
@@ -32,10 +32,11 @@ export default class Encrypt extends Command {
     try {
       const { flags } = this.parse(Encrypt);
       const { value, key, publicKeyFile } = flags;
+
       if (key) {
-        const decodedKey = cryppo.decodeSafe64(key);
+        const decodedKey = EncryptionKey.fromSerialized(key);
         const encrypted = await cryppo.encryptWithKey({
-          data: value,
+          data: utf8ToBytes(value),
           key: decodedKey,
           strategy: cryppo.CipherStrategy.AES_GCM
         });
@@ -43,9 +44,9 @@ export default class Encrypt extends Command {
           this.log(encrypted.serialized);
         }
       } else if (publicKeyFile) {
-        const publicKeyPem = binaryBufferToString(await readFileAsBuffer(publicKeyFile));
+        const publicKeyPem = bytesBufferToBinaryString(await readFileAsBuffer(publicKeyFile));
         const encrypted = await cryppo.encryptWithPublicKey({
-          data: value,
+          data: utf8ToBytes(value),
           publicKeyPem
         });
         this.log(encrypted.serialized);

@@ -1,6 +1,7 @@
 import cryppo from '../../src/cryppo-wrapper';
 import { expect, test } from '@oclif/test';
 import * as file from '../../src/util/file';
+import { bytesToUtf8 } from '@meeco/cryppo';
 
 const mockEncryptedValue = 'Aes256Gcm.gSAByGMq4edzM0U=.LS0tCml';
 
@@ -17,7 +18,7 @@ describe('encrypt', () => {
   test
     .stub(cryppo, 'encryptWithPublicKey', (({ data, publicKeyPem }) =>
       Promise.resolve({
-        serialized: `${data} encrypted w/ ${publicKeyPem}`
+        serialized: `${bytesToUtf8(data)} encrypted w/ ${publicKeyPem}`
       })) as any)
     .stub(file, 'readFileAsBuffer', (path => Promise.resolve(`${path} contents`)) as any)
     .stdout()
@@ -29,9 +30,9 @@ describe('encrypt', () => {
 
 // Mocked because the actual encrypted value is not deterministic.
 function mockEncrypt({ data, key, strategy }) {
-  expect(data).to.equal('My Secret Data');
+  expect(bytesToUtf8(data)).to.equal('My Secret Data');
   expect(strategy).to.equal(cryppo.CipherStrategy.AES_GCM);
-  expect(key).to.equal('mockKey'); // decoded
+  // expect(key).to.be.an('EncryptionKey');
   const serialized = mockEncryptedValue;
   return Promise.resolve({
     serialized

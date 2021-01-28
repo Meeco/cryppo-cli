@@ -1,5 +1,5 @@
 import cryppo from '../../src/cryppo-wrapper';
-import { stringAsBinaryBuffer } from '@meeco/cryppo';
+import { binaryStringToBytesBuffer } from '@meeco/cryppo';
 import { expect, test } from '@oclif/test';
 import { stub } from 'sinon';
 import * as file from '../../src/util/file';
@@ -11,7 +11,7 @@ describe('verify', () => {
       cryppo,
       'loadRsaSignature',
       stub().returns(
-        Promise.resolve({
+        ({
           data: 'signed_file_contents'
         })
       )
@@ -21,7 +21,7 @@ describe('verify', () => {
     .stub(
       file,
       'readFileAsBuffer',
-      stub().callsFake(path => Promise.resolve(stringAsBinaryBuffer(`${path} contents`)))
+      stub().callsFake(path => Promise.resolve(binaryStringToBytesBuffer(`${path} contents`)))
     )
     .stdout()
     .command(['verify', '-P', 'id_rsa.pub', 'my_file_signed', 'my_file'])

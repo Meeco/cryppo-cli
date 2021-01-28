@@ -1,4 +1,4 @@
-import { stringAsBinaryBuffer } from '@meeco/cryppo';
+import { binaryStringToBytesBuffer } from '@meeco/cryppo';
 import { expect, test } from '@oclif/test';
 import { readFileSync } from 'fs';
 import { join } from 'path';
@@ -10,7 +10,7 @@ describe('decrypt', () => {
   const rsaEncryptedValue = readFileSync(join(__dirname, './rsa_encrypted'), 'utf-8');
   const privateKeyPem = readFileSync(join(__dirname, './test_private_key.pem'), 'utf-8');
   const fileStub: any = path =>
-    path === 'id_rsa' ? Promise.resolve(stringAsBinaryBuffer(privateKeyPem)) : Promise.reject();
+    path === 'id_rsa' ? Promise.resolve(binaryStringToBytesBuffer(privateKeyPem)) : Promise.reject();
   const base64Key = 'vm8CjugMda2zdjsI9W25nH-CY-84DDYoBxTFLwfKLDk=';
   test
     .stdout()
