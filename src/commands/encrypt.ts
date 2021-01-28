@@ -5,7 +5,7 @@ import { handleException } from '../handle-exception';
 import { readFileAsBuffer } from '../util/file';
 
 export default class Encrypt extends Command {
-  static description = 'Encrypt a serialized encrypted value';
+  static description = 'Encrypt a value (assumed to be UTF-8 encoded string)'
 
   static examples = [
     'encrypt -v "hello world" -k vm8CjugMda2zdjsI9W25nH-CY-84DDYoBxTFLwfKLDk=',
