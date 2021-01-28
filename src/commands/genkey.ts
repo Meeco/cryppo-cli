@@ -6,14 +6,14 @@ export default class Genkey extends Command {
   static description =
     'Generate a new encryption key of random bytes with the specified length - printed as url-safe base64';
 
-  static examples = ['cryppo genkey', 'cryppo genkey -l 16'];
+  static examples = ['cryppo genkey', 'cryppo genkey -l 192'];
 
   static flags = {
     length: flags.integer({
       char: 'l',
-      default: 32,
+      default: 128,
       description:
-        "length of the key in bytes to generate (defaults to 32 bytes - cryppo's default)"
+        "length of the key in bytes to generate: 128, 192 or 256"
     })
   };
 
