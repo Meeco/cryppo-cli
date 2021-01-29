@@ -1,14 +1,14 @@
 {
   "name": "cryppo-cli",
   "description": "Meeco encryption library",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "author": "Meeco",
   "bin": {
     "cryppo": "./bin/run"
   },
   "bugs": "https://github.com/Meeco/cryppo-cli/issues",
   "dependencies": {
-    "@meeco/cryppo": "^1.0.0",
+    "@meeco/cryppo": "^2.0.0",
     "@oclif/command": "^1.5.19",
     "@oclif/config": "^1.14.0",
     "@oclif/plugin-help": "^2.2.3",
@@ -60,7 +60,7 @@
     "format:write": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\" *.json README.md",
     "pkg": "oclif-dev pack",
     "postpack": "rm -f oclif.manifest.json",
-    "posttest": "eslint . --ext .ts --config .eslintrc && npm run format:check",
+    "posttest": "eslint src test --ext .ts --config .eslintrc && npm run format:check",
     "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
     "prepkg": "npm run prepack",
     "readme": "oclif-dev readme && prettier --write README.md",

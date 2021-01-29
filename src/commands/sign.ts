@@ -1,5 +1,5 @@
 import cryppo from '../cryppo-wrapper';
-import { binaryBufferToString } from '@meeco/cryppo/dist/src/util';
+import { bytesBufferToBinaryString } from '@meeco/cryppo';
 import { Command, flags } from '@oclif/command';
 import { handleException } from '../handle-exception';
 import { readFileAsBuffer, writeFileContents } from '../util/file';
@@ -38,10 +38,7 @@ export default class Sign extends Command {
       const { file, destination } = args;
       const privateKey = await readFileAsBuffer(privateKeyFile);
       const fileContents = await readFileAsBuffer(file);
-      const signed = await cryppo.signWithPrivateKey(
-        binaryBufferToString(privateKey),
-        binaryBufferToString(fileContents)
-      );
+      const signed = cryppo.signWithPrivateKey(bytesBufferToBinaryString(privateKey), fileContents);
       await writeFileContents(destination, signed.serialized);
       this.log('Signed contents written');
     } catch (error) {

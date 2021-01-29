@@ -18,7 +18,6 @@ const cryppoWrapper = {
   generateRSAKeyPair: cryppo.generateRSAKeyPair,
   verifyWithPublicKey: cryppo.verifyWithPublicKey,
 
-  generateRandomKey: cryppo.generateRandomKey,
   encodeSafe64: cryppo.encodeSafe64
 };
 

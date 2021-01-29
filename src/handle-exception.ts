@@ -1,12 +1,12 @@
 import { Command } from '@oclif/command';
 import { CLIError } from '@oclif/errors';
 
-export async function handleException<T>(err: any, instance: Command) {
+export async function handleException(err: any, instance: Command) {
   if (err instanceof CLIError) {
     // Error is already 'handled' by oclif pretty well so can just print as-is
     instance.error(err);
   }
-  let message;
+  let message = '';
   /**
    * Error from the API - convert the body stream to JSON and print that
    */

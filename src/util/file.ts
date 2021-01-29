@@ -10,5 +10,5 @@ import { promisify } from 'util';
 const read = promisify(readFile);
 const write = promisify(writeFile);
 
-export const readFileAsBuffer = file => read(file);
-export const writeFileContents = (file, contents) => write(file, contents);
+export const readFileAsBuffer = (file: string) => read(file);
+export const writeFileContents = (file: string, contents: any) => write(file, contents);
