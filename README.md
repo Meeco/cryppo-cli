@@ -10,15 +10,25 @@ Meeco Encryption Library CLI
 [![License](https://img.shields.io/npm/l/cryppo-cli.svg)](https://github.com/Meeco/cryppo-cli/blob/master/package.json)
 
 <!-- toc -->
+* [Cryppo CLI](#cryppo-cli)
+* [Usage](#usage)
+* [Commands](#commands)
+<!-- tocstop -->
 
-- [Cryppo CLI](#cryppo-cli)
-- [Usage](#usage)
-- [Commands](#commands)
-  <!-- tocstop -->
+## Installation
 
-# Usage
+1. Download the gzip file appriate for your system from the [releases page](https://github.com/Meeco/cryppo-cli/releases).
+2. Unzip the downloaded file to a destination of your choosing.
+3. Open up a terminal window inside the extracted `cryppo` folder.
+4. Change directory to the `bin` folder.
+5. Test that everything is working correctly by running the command `./cryppo genkey`.
+6. Optionally on Mac or Linux add an alias to the cryppo executeable with `echo "alias cryppo=\"${PWD}/cryppo\"" >> ~/.zshrc`. (if you are not
+using zshell replace `.zshrc` with `.bash_profile` or `.bashrc` or whatever your system uses https://www.linuxjournal.com/content/profiles-and-rc-files)
+7. Open a new terminal window and you should be able to now use the `cryppo` command from anywhere and you'll no longer need to reference it relatively.
 
-## Basic example:
+## Usage
+
+### Basic example:
 
 ```sh
 $ cryppo genkey
@@ -40,36 +50,34 @@ $ cryppo verify -P public.pem myfile.signed.txt myfile.txt
 ```
 
 <!-- usage -->
-
 ```sh-session
-$ npm install -g cryppo-cli
 $ cryppo COMMAND
 running command...
 $ cryppo (-v|--version|version)
-cryppo-cli/2.0.0 linux-x64 node-v15.6.0
+cryppo-cli/2.0.0 darwin-x64 node-v12.22.1
 $ cryppo --help [COMMAND]
 USAGE
   $ cryppo COMMAND
 ...
 ```
-
 <!-- usagestop -->
 
-# Commands
+## Commands
 
 <!-- commands -->
+* [`cryppo decrypt`](#cryppo-decrypt)
+* [`cryppo encrypt`](#cryppo-encrypt)
+* [`cryppo genkey`](#cryppo-genkey)
+* [`cryppo genkeypair`](#cryppo-genkeypair)
+* [`cryppo help [COMMAND]`](#cryppo-help-command)
+* [`cryppo sign FILE DESTINATION`](#cryppo-sign-file-destination)
+* [`cryppo verify FILE DESTINATION`](#cryppo-verify-file-destination)
 
-- [`cryppo decrypt`](#cryppo-decrypt)
-- [`cryppo encrypt`](#cryppo-encrypt)
-- [`cryppo genkey`](#cryppo-genkey)
-- [`cryppo genkeypair`](#cryppo-genkeypair)
-- [`cryppo help [COMMAND]`](#cryppo-help-command)
-- [`cryppo sign FILE DESTINATION`](#cryppo-sign-file-destination)
-- [`cryppo verify FILE DESTINATION`](#cryppo-verify-file-destination)
+### `cryppo decrypt`
 
-## `cryppo decrypt`
+Decrypt a serialized encrypted value
 
-```
+```bash
 Decrypt a serialized encrypted value
 
 USAGE
@@ -82,7 +90,7 @@ OPTIONS
   -s, --serialized=serialized          (required) serialized encrypted value
 
 EXAMPLES
-  cryppo decrypt -s
+  cryppo decrypt -s 
   "Aes256Gcm.gSAByGMq4edzM0U=.LS0tCml2OiAhYmluYXJ5IHwtCiAgaW1QL09qMWZ6eWw0cmwwSgphdDogIWJpbmFyeSB8LQogIE5SbjZUQXJ2bitNS1
   Z5M0FpZEpmWlE9PQphZDogbm9uZQo=" -k vm8CjugMda2zdjsI9W25nH-CY-84DDYoBxTFLwfKLDk=
   cryppo decrypt -s "Rsa4096.bJjV2g_RBZKeyqBr-dSjPAc3qtkTgd0=.LS0tCnt9Cg==" -p private.pem
@@ -90,9 +98,11 @@ EXAMPLES
 
 _See code: [src/commands/decrypt.ts](https://github.com/Meeco/cryppo-cli/blob/v2.0.0/src/commands/decrypt.ts)_
 
-## `cryppo encrypt`
+### `cryppo encrypt`
 
-```
+Encrypt a value (assumed to be UTF-8 encoded string)
+
+```bash
 Encrypt a value (assumed to be UTF-8 encoded string)
 
 USAGE
@@ -111,9 +121,11 @@ EXAMPLES
 
 _See code: [src/commands/encrypt.ts](https://github.com/Meeco/cryppo-cli/blob/v2.0.0/src/commands/encrypt.ts)_
 
-## `cryppo genkey`
+### `cryppo genkey`
 
-```
+Generate a new encryption key of random bytes with the specified length - printed as url-safe base64
+
+```bash
 Generate a new encryption key of random bytes with the specified length - printed as url-safe base64
 
 USAGE
@@ -129,9 +141,11 @@ EXAMPLES
 
 _See code: [src/commands/genkey.ts](https://github.com/Meeco/cryppo-cli/blob/v2.0.0/src/commands/genkey.ts)_
 
-## `cryppo genkeypair`
+### `cryppo genkeypair`
 
-```
+Generate a new RSA key pair, writing the private and public keys to files.
+
+```bash
 Generate a new RSA key pair, writing the private and public keys to files.
 
 USAGE
@@ -148,9 +162,11 @@ EXAMPLE
 
 _See code: [src/commands/genkeypair.ts](https://github.com/Meeco/cryppo-cli/blob/v2.0.0/src/commands/genkeypair.ts)_
 
-## `cryppo help [COMMAND]`
+### `cryppo help [COMMAND]`
 
-```
+display help for cryppo
+
+```bash
 display help for <%= config.bin %>
 
 USAGE
@@ -165,9 +181,11 @@ OPTIONS
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.2.3/src/commands/help.ts)_
 
-## `cryppo sign FILE DESTINATION`
+### `cryppo sign FILE DESTINATION`
 
-```
+Sign a file with an RSA private key and write the signed contents to a new file
+
+```bash
 Sign a file with an RSA private key and write the signed contents to a new file
 
 USAGE
@@ -186,9 +204,11 @@ EXAMPLE
 
 _See code: [src/commands/sign.ts](https://github.com/Meeco/cryppo-cli/blob/v2.0.0/src/commands/sign.ts)_
 
-## `cryppo verify FILE DESTINATION`
+### `cryppo verify FILE DESTINATION`
 
-```
+Verify an RSA signed file and write the contents to another file.
+
+```bash
 Verify an RSA signed file and write the contents to another file.
 
 USAGE
@@ -206,5 +226,4 @@ EXAMPLE
 ```
 
 _See code: [src/commands/verify.ts](https://github.com/Meeco/cryppo-cli/blob/v2.0.0/src/commands/verify.ts)_
-
 <!-- commandsstop -->
