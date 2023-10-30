@@ -22,13 +22,13 @@ export default class Genkey extends Command {
 
       const { length } = flags;
 
-      if (![128, 192, 256].includes(length / 8)) {
+      if (![128, 192, 256].includes(length)) {
         this.warn(
           `You have specified a key length of ${length} bytes - AES only supports 128, 192 or 256 bit keys`
         );
       }
 
-      const key = EncryptionKey.generateRandom(length);
+      const key = EncryptionKey.generateRandom(length / 8);
       this.log('URL-Safe Base64 encoded key:');
       this.log(key.serialize);
     } catch (error) {
