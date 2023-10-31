@@ -1,6 +1,7 @@
 {
   "extends": ["oclif", "oclif-typescript"],
   "rules": {
+    "@typescript-eslint/no-explicit-any": "off",
     "semi": ["warn", "always"],
     "semi-spacing": [
       "warn",

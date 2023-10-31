@@ -9,6 +9,7 @@ export async function handleException(err: any, instance: Command) {
   } else if (err.message) {
     message = prettifyMessage(err.message);
   }
+
   instance.error(message);
 }
 
@@ -18,7 +19,7 @@ export async function handleException(err: any, instance: Command) {
 function prettifyMessage(message: string): string {
   if (message.includes('Invalid PEM formatted message')) {
     return 'The private or public key file you provided was invalid';
-  } else {
-    return message;
   }
+
+  return message;
 }

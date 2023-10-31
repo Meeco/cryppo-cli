@@ -8,17 +8,17 @@ import * as cryppo from '@meeco/cryppo';
 const cryppoWrapper = {
   CipherStrategy: cryppo.CipherStrategy,
   decodeSafe64: cryppo.decodeSafe64,
-  decryptWithKey: cryppo.decryptWithKey,
-  encryptWithKey: cryppo.encryptWithKey,
   decryptSerializedWithPrivateKey: cryppo.decryptSerializedWithPrivateKey,
-  encryptWithPublicKey: cryppo.encryptWithPublicKey,
+  decryptWithKey: cryppo.decryptWithKey,
   decryptWithPrivateKey: cryppo.decryptWithPrivateKey,
-  signWithPrivateKey: cryppo.signWithPrivateKey,
-  loadRsaSignature: cryppo.loadRsaSignature,
-  generateRSAKeyPair: cryppo.generateRSAKeyPair,
-  verifyWithPublicKey: cryppo.verifyWithPublicKey,
-
   encodeSafe64: cryppo.encodeSafe64,
+  encryptWithKey: cryppo.encryptWithKey,
+  encryptWithPublicKey: cryppo.encryptWithPublicKey,
+  generateRSAKeyPair: cryppo.generateRSAKeyPair,
+  loadRsaSignature: cryppo.loadRsaSignature,
+  signWithPrivateKey: cryppo.signWithPrivateKey,
+
+  verifyWithPublicKey: cryppo.verifyWithPublicKey
 };
 
 export default cryppoWrapper;
