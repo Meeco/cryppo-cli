@@ -8,8 +8,8 @@ import * as file from '../../src/util/file';
 describe('decrypt', () => {
   const aesEncryptedValue =
     'Aes256Gcm.gSAByGMq4edzM0U=.LS0tCml2OiAhYmluYXJ5IHwtCiAgaW1QL09qMWZ6eWw0cmwwSgphdDogIWJpbmFyeSB8LQogIE5SbjZUQXJ2bitNS1Z5M0FpZEpmWlE9PQphZDogbm9uZQo=';
-  const rsaEncryptedValue = readFileSync(join(__dirname, './rsa_encrypted'), 'utf-8');
-  const privateKeyPem = readFileSync(join(__dirname, './test_private_key.pem'), 'utf-8');
+  const rsaEncryptedValue = readFileSync(join(__dirname, './rsa_encrypted'), 'utf8');
+  const privateKeyPem = readFileSync(join(__dirname, './test_private_key.pem'), 'utf8');
   const fileStub: any = path =>
     path === 'id_rsa'
       ? Promise.resolve(binaryStringToBytesBuffer(privateKeyPem))

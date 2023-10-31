@@ -67,8 +67,8 @@
   },
   "repository": "Meeco/cryppo-cli",
   "scripts": {
-    "format:check": "prettier -c \"src/**/*.ts\" \"test/**/*.ts\"",
-    "format:fix": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\" *.json README.md",
+    "fmt:check": "prettier -c \"src/**/*.ts\" \"test/**/*.ts\"",
+    "fmt:fix": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\" *.json README.md",
     "lint:check": "eslint \"{src,test}/**/*.ts\"",
     "lint:fix": "eslint \"{src,test}/**/*.ts\" --fix",
     "build": "shx rm -rf dist && tsc -b",
