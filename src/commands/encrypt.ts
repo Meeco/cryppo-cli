@@ -1,11 +1,11 @@
 import { bytesBufferToBinaryString, EncryptionKey, utf8ToBytes } from '@meeco/cryppo';
-import { Command, flags } from '@oclif/command';
+import { Command, Flags } from '@oclif/core'
 import cryppo from '../cryppo-wrapper';
 import { handleException } from '../handle-exception';
 import { readFileAsBuffer } from '../util/file';
 
 export default class Encrypt extends Command {
-  static description = 'Encrypt a value (assumed to be UTF-8 encoded string)';
+  static description = 'Encrypt a value (assumed to be UTF-8 encoded string).';
 
   static examples = [
     'encrypt -v "hello world" -k vm8CjugMda2zdjsI9W25nH-CY-84DDYoBxTFLwfKLDk=',
@@ -13,24 +13,26 @@ export default class Encrypt extends Command {
   ];
 
   static flags = {
-    help: flags.help({ char: 'h' }),
+    help: Flags.help({ char: 'h' }),
     // flag with a value (-n, --name=VALUE)
-    value: flags.string({ char: 'v', description: 'value to encrypt', required: true }),
-    key: flags.string({
+    value: Flags.string({ char: 'v', description: 'value to encrypt', required: true }),
+    key: Flags.string({
       char: 'k',
       description: 'base64 encoded data encryption key (if encrypting with AES)',
       exclusive: ['publicKeyFile']
     }),
-    publicKeyFile: flags.string({
+    publicKeyFile: Flags.string({
       char: 'P',
       description: 'public key file (if encrypting with RSA)',
       exclusive: ['key']
     })
   };
 
-  async run() {
+  static args = {};
+
+  async run(): Promise<void> {
     try {
-      const { flags } = this.parse(Encrypt);
+      const { flags } = await this.parse(Encrypt);
       const { value, key, publicKeyFile } = flags;
 
       if (key) {

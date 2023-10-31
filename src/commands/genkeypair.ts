@@ -1,5 +1,5 @@
 import cryppo from '../cryppo-wrapper';
-import { Command, flags } from '@oclif/command';
+import { Command, Flags } from '@oclif/core'
 import { writeFile } from 'fs';
 import { promisify } from 'util';
 import { handleException } from '../handle-exception';
@@ -10,20 +10,22 @@ export default class Genkeypair extends Command {
   static examples = ['cryppo genkeypair -p private.pem -P public.pem'];
 
   static flags = {
-    bits: flags.integer({ char: 'b', description: 'RSA key size', default: 4096 }),
-    privateKeyOut: flags.string({
+    bits: Flags.integer({ char: 'b', description: 'RSA key size', default: 4096 }),
+    privateKeyOut: Flags.string({
       required: true,
       char: 'p',
       description: 'Private key output path'
     }),
-    publicKeyOut: flags.string({ required: true, char: 'P', description: 'Public key output path' })
+    publicKeyOut: Flags.string({ required: true, char: 'P', description: 'Public key output path' })
   };
 
-  async run() {
+  static args = {};
+
+  async run(): Promise<void> {
     try {
       const write = promisify(writeFile);
 
-      const { flags } = this.parse(Genkeypair);
+      const { flags } = await this.parse(Genkeypair);
       const { bits, privateKeyOut, publicKeyOut } = flags;
 
       const pair = await cryppo.generateRSAKeyPair(bits);

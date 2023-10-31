@@ -1,11 +1,11 @@
 import { bytesBufferToBinaryString, EncryptionKey } from '@meeco/cryppo';
-import { Command, flags } from '@oclif/command';
+import { Command, Flags } from '@oclif/core'
 import cryppo from '../cryppo-wrapper';
 import { handleException } from '../handle-exception';
 import { readFileAsBuffer } from '../util/file';
 
 export default class Decrypt extends Command {
-  static description = 'Decrypt a serialized encrypted value';
+  static description = 'Decrypt a serialized encrypted value with AES or RSA.';
 
   static examples = [
     'cryppo decrypt -s "Aes256Gcm.gSAByGMq4edzM0U=.LS0tCml2OiAhYmluYXJ5IHwtCiAgaW1QL09qMWZ6eWw0cmwwSgphdDogIWJpbmFyeSB8LQogIE5SbjZUQXJ2bitNS1Z5M0FpZEpmWlE9PQphZDogbm9uZQo=" -k vm8CjugMda2zdjsI9W25nH-CY-84DDYoBxTFLwfKLDk=',
@@ -13,28 +13,30 @@ export default class Decrypt extends Command {
   ];
 
   static flags = {
-    help: flags.help({ char: 'h' }),
+    help: Flags.help({ char: 'h' }),
     // flag with a value (-n, --name=VALUE)
-    serialized: flags.string({
+    serialized: Flags.string({
       char: 's',
       description: 'serialized encrypted value',
       required: true
     }),
-    key: flags.string({
+    key: Flags.string({
       char: 'k',
       description: 'base64 encoded data encryption key',
       exclusive: ['privateKeyFile']
     }),
-    privateKeyFile: flags.string({
+    privateKeyFile: Flags.string({
       char: 'p',
       description: 'private key file (if encrypting with RSA)',
       exclusive: ['key']
     })
   };
 
-  async run() {
+  static args = {};
+
+  async run(): Promise<void> {
     try {
-      const { flags } = this.parse(Decrypt);
+      const { flags } = await this.parse(Decrypt);
       const { serialized, key, privateKeyFile } = flags;
       if (key) {
         const decodedKey = EncryptionKey.fromSerialized(key);

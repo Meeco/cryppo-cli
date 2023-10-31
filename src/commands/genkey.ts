@@ -1,25 +1,26 @@
 import { EncryptionKey } from '@meeco/cryppo';
-import { Command, flags } from '@oclif/command';
+import { Command, Flags } from '@oclif/core'
 import { handleException } from '../handle-exception';
 
 export default class Genkey extends Command {
   static description =
-    'Generate a new encryption key of random bytes with the specified length - printed as url-safe base64';
+    'Generate a new encryption key of random bytes with the specified length - printed as url-safe base64.';
 
   static examples = ['cryppo genkey', 'cryppo genkey -l 192'];
 
   static flags = {
-    length: flags.integer({
+    length: Flags.integer({
       char: 'l',
       default: 128,
       description: 'length of the key in bytes to generate: 128, 192 or 256'
     })
   };
 
-  async run() {
-    try {
-      const { flags } = this.parse(Genkey);
+  static args = {};
 
+  async run(): Promise<void> {
+    try {
+      const { flags } = await this.parse(Genkey);
       const { length } = flags;
 
       if (![128, 192, 256].includes(length)) {

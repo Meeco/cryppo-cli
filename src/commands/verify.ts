@@ -1,6 +1,6 @@
 import cryppo from '../cryppo-wrapper';
 import { bytesBufferToBinaryString } from '@meeco/cryppo';
-import { Command, flags } from '@oclif/command';
+import { Args, Command, Flags } from '@oclif/core'
 import { handleException } from '../handle-exception';
 import { readFileAsBuffer, writeFileContents } from '../util/file';
 
@@ -10,29 +10,29 @@ export default class Verify extends Command {
   static examples = ['cryppo verify -P public.pem my_file.signed.txt my_file.txt'];
 
   static flags = {
-    publicKeyFile: flags.string({
+    publicKeyFile: Flags.string({
       char: 'P',
       required: true,
       description: 'path to the public key file'
     })
   };
 
-  static args = [
-    {
-      name: 'file',
+  static args = {
+    file: Args.string({
+      char: 'f',
       required: true,
       description: 'Signed file contents to verify'
-    },
-    {
-      name: 'destination',
+    }),
+    destination: Args.string({
+      char: 'd',
       required: true,
       description: 'File to write the resulting verified content to'
-    }
-  ];
+    })
+  };
 
-  async run() {
+  async run(): Promise<void> {
     try {
-      const { flags, args } = this.parse(Verify);
+      const { flags, args } = await this.parse(Verify);
       const { publicKeyFile } = flags;
       const { file, destination } = args;
       const publicKey = await readFileAsBuffer(publicKeyFile);

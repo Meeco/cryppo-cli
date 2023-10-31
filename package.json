@@ -1,6 +1,6 @@
 {
   "name": "cryppo-cli",
-  "description": "Meeco encryption library",
+  "description": "Command line interface for Cryppo, a Meeco encryption library",
   "version": "2.0.0",
   "author": "Meeco",
   "bin": {
@@ -9,17 +9,22 @@
   "bugs": "https://github.com/Meeco/cryppo-cli/issues",
   "dependencies": {
     "@meeco/cryppo": "^2.0.0",
-    "@oclif/command": "^1.5.19",
-    "@oclif/config": "^1.14.0",
-    "@oclif/plugin-help": "^2.2.3",
-    "tslib": "^1.11.1"
+    "tslib": "^2.6.2",
+
+    "@oclif/core": "^3",
+    "@oclif/plugin-help": "^6"
+
+
   },
   "devDependencies": {
-    "@oclif/dev-cli": "^1.22.2",
-    "@oclif/test": "^1.2.5",
+    "oclif": "^4.0.3",
+    "@oclif/prettier-config": "^0.2.1",
+    "@oclif/test": "^3",
+
+
     "@types/chai": "^4.2.11",
     "@types/mocha": "^5.2.7",
-    "@types/node": "^10.17.17",
+    "@types/node": "^18",
     "chai": "^4.2.0",
     "eslint": "^5.16.0",
     "eslint-config-oclif": "^3.1.0",
@@ -29,11 +34,13 @@
     "nyc": "^14.1.1",
     "prettier": "~1.19.1",
     "sinon": "^9.0.2",
-    "ts-node": "^8.6.2",
-    "typescript": "^3.8.3"
+    "shx": "^0.3.3",
+    "ts-node": "^10.9.1",
+    "typescript": "^5"
+
   },
   "engines": {
-    "node": ">=12.4.0"
+    "node": ">=18.0.0"
   },
   "files": [
     "/bin",
@@ -43,27 +50,37 @@
   ],
   "homepage": "https://github.com/Meeco/cryppo-cli",
   "keywords": [
-    "oclif"
+    "Meeco", "cryptography", "Cryppo", "AES", "AES-GCM", "RSA", "key derivation"
   ],
   "license": "MIT",
   "main": "lib/index.js",
   "oclif": {
-    "commands": "./lib/commands",
     "bin": "cryppo",
+    "dirname": "cryppo",
+    "commands": "./dist/commands",
     "plugins": [
       "@oclif/plugin-help"
-    ]
+    ],
+
+    "macos": {
+      "identifier": "me.meeco.cryppo"
+    }
   },
   "repository": "Meeco/cryppo-cli",
   "scripts": {
     "format:check": "prettier -c \"src/**/*.ts\" \"test/**/*.ts\"",
     "format:write": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\" *.json README.md",
-    "pkg": "oclif-dev pack",
-    "postpack": "rm -f oclif.manifest.json",
-    "posttest": "eslint src test --ext .ts --config .eslintrc && npm run format:check",
-    "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
-    "prepkg": "npm run prepack",
-    "readme": "oclif-dev readme && prettier --write README.md",
+
+    "build": "shx rm -rf dist && tsc -b",
+
+    "postpack": "shx rm -f oclif.manifest.json",
+    "posttest": "npm run lint",
+    "prepack": "npm run build && oclif manifest && oclif readme",
+    "pack": "oclif pack tarballs --no-xz --parallel",
+    "pack-win": "oclif pack win",
+    "pack-mac": "oclif pack macos",
+
+
     "test": "nyc --extension .ts mocha --forbid-only \"test/**/*.test.ts\"",
     "version": "oclif-dev readme && git add README.md"
   },
