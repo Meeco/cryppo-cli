@@ -1,6 +1,6 @@
 import cryppo from '../cryppo-wrapper';
 import { bytesBufferToBinaryString } from '@meeco/cryppo';
-import { Args, Command, Flags } from '@oclif/core'
+import { Args, Command, Flags } from '@oclif/core';
 import { handleException } from '../handle-exception';
 import { readFileAsBuffer, writeFileContents } from '../util/file';
 

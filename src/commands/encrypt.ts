@@ -1,5 +1,5 @@
 import { bytesBufferToBinaryString, EncryptionKey, utf8ToBytes } from '@meeco/cryppo';
-import { Command, Flags } from '@oclif/core'
+import { Command, Flags } from '@oclif/core';
 import cryppo from '../cryppo-wrapper';
 import { handleException } from '../handle-exception';
 import { readFileAsBuffer } from '../util/file';

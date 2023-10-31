@@ -1,5 +1,5 @@
 import cryppo from '../cryppo-wrapper';
-import { Command, Flags } from '@oclif/core'
+import { Command, Flags } from '@oclif/core';
 import { writeFile } from 'fs';
 import { promisify } from 'util';
 import { handleException } from '../handle-exception';

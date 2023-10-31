@@ -1,5 +1,5 @@
 import { EncryptionKey } from '@meeco/cryppo';
-import { Command, Flags } from '@oclif/core'
+import { Command, Flags } from '@oclif/core';
 import { handleException } from '../handle-exception';
 
 export default class Genkey extends Command {
