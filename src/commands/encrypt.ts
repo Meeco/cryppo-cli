@@ -9,7 +9,7 @@ export default class Encrypt extends Command {
 
   static examples = [
     'encrypt -v "hello world" -k vm8CjugMda2zdjsI9W25nH-CY-84DDYoBxTFLwfKLDk=',
-    'encrypt -v "hello world" -P public-key.pem'
+    'encrypt -v "hello world" -P public-key.pem',
   ];
 
   static flags = {
@@ -19,13 +19,13 @@ export default class Encrypt extends Command {
     key: Flags.string({
       char: 'k',
       description: 'base64 encoded data encryption key (if encrypting with AES)',
-      exclusive: ['publicKeyFile']
+      exclusive: ['publicKeyFile'],
     }),
     publicKeyFile: Flags.string({
       char: 'P',
       description: 'public key file (if encrypting with RSA)',
-      exclusive: ['key']
-    })
+      exclusive: ['key'],
+    }),
   };
 
   static args = {};
@@ -40,7 +40,7 @@ export default class Encrypt extends Command {
         const encrypted = await cryppo.encryptWithKey({
           data: utf8ToBytes(value),
           key: decodedKey,
-          strategy: cryppo.CipherStrategy.AES_GCM
+          strategy: cryppo.CipherStrategy.AES_GCM,
         });
         if (encrypted.serialized) {
           this.log(encrypted.serialized);
@@ -49,12 +49,12 @@ export default class Encrypt extends Command {
         const publicKeyPem = bytesBufferToBinaryString(await readFileAsBuffer(publicKeyFile));
         const encrypted = await cryppo.encryptWithPublicKey({
           data: utf8ToBytes(value),
-          publicKeyPem
+          publicKeyPem,
         });
         this.log(encrypted.serialized);
       } else {
         this.error(
-          'Must specify either base-64 encoded encryption key or RSA public key file path'
+          'Must specify either base-64 encoded encryption key or RSA public key file path',
         );
       }
     } catch (error) {

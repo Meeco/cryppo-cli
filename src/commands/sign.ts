@@ -14,21 +14,21 @@ export default class Sign extends Command {
     privateKeyFile: Flags.string({
       char: 'p',
       required: true,
-      description: 'path to the private key file'
-    })
+      description: 'path to the private key file',
+    }),
   };
 
   static args = {
     file: Args.string({
       char: 'f',
       description: 'File to sign',
-      required: true
+      required: true,
     }),
     destination: Args.string({
       char: 'd',
       description: 'File to write the resulting signed content to',
-      required: true
-    })
+      required: true,
+    }),
   };
 
   async run(): Promise<void> {

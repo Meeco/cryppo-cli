@@ -13,21 +13,21 @@ export default class Verify extends Command {
     publicKeyFile: Flags.string({
       char: 'P',
       required: true,
-      description: 'path to the public key file'
-    })
+      description: 'path to the public key file',
+    }),
   };
 
   static args = {
     file: Args.string({
       char: 'f',
       required: true,
-      description: 'Signed file contents to verify'
+      description: 'Signed file contents to verify',
     }),
     destination: Args.string({
       char: 'd',
       required: true,
-      description: 'File to write the resulting verified content to'
-    })
+      description: 'File to write the resulting verified content to',
+    }),
   };
 
   async run(): Promise<void> {
@@ -40,7 +40,7 @@ export default class Verify extends Command {
       const rsaSignature = cryppo.loadRsaSignature(bytesBufferToBinaryString(signed));
       const verified = cryppo.verifyWithPublicKey(
         bytesBufferToBinaryString(publicKey),
-        rsaSignature
+        rsaSignature,
       );
       if (verified) {
         this.log('Signature verified - writing file...');

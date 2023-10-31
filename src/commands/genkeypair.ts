@@ -14,9 +14,13 @@ export default class Genkeypair extends Command {
     privateKeyOut: Flags.string({
       required: true,
       char: 'p',
-      description: 'Private key output path'
+      description: 'Private key output path',
     }),
-    publicKeyOut: Flags.string({ required: true, char: 'P', description: 'Public key output path' })
+    publicKeyOut: Flags.string({
+      required: true,
+      char: 'P',
+      description: 'Public key output path',
+    }),
   };
 
   static args = {};
