@@ -1,6 +1,6 @@
 {
   "name": "cryppo-cli",
-  "description": "Command line interface for Cryppo, a Meeco encryption library",
+  "description": "Command line interface for Cryppo-js, a Meeco encryption library",
   "version": "2.0.0",
   "author": "Meeco",
   "bin": {
@@ -17,13 +17,13 @@
     "@oclif/prettier-config": "^0.2.1",
     "@oclif/test": "^3",
     "@types/chai": "^4.2.11",
-    "@types/mocha": "^5.2.7",
+    "@types/mocha": "^9.1.1",
     "@types/node": "^18",
     "chai": "^4.2.0",
     "eslint": "^8.52.0",
     "eslint-config-oclif": "^5.0.0",
     "eslint-config-oclif-typescript": "^3.0.0",
-    "mocha": "^5.2.0",
+    "mocha": "^10.2.0",
     "nyc": "^15.1.0",
     "oclif": "^4.0.3",
     "prettier": "^3.0.0",
@@ -45,6 +45,7 @@
   "keywords": [
     "Meeco",
     "cryptography",
+    "encryption",
     "Cryppo",
     "AES",
     "AES-GCM",
@@ -80,5 +81,5 @@
     "test": "nyc --extension .ts mocha --forbid-only \"test/**/*.test.ts\"",
     "version": "oclif-dev readme && git add README.md"
   },
-  "types": "lib/index.d.ts"
+  "types": "dist/index.d.ts"
 }
