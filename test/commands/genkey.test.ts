@@ -1,12 +1,25 @@
-import { expect, test } from '@oclif/test';
 import { EncryptionKey, binaryStringToBytes } from '@meeco/cryppo';
+import { expect, test } from '@oclif/test';
+// Sinon uses CommonJS modules, so esModuleInterop": true is required in tsconfig.json
+import sinon from 'sinon';
 
 describe('genkey', () => {
   const mockKey: Uint8Array = binaryStringToBytes('vm8CjugMda2zdjsI9W25nH');
   const base64EncodedKey = 'dm04Q2p1Z01kYTJ6ZGpzSTlXMjVuSA=='; // from encodeSafe64
+
+  let stub;
+
+  beforeEach(() => {
+    stub = sinon.stub(EncryptionKey, 'generateRandom');
+    stub.callsFake(() => EncryptionKey.fromBytes(mockKey));
+
+  });
+
+  afterEach(() => {
+    stub.restore();
+  });
+
   test
-    // Mocked so we get a deterministic value for testing
-    .stub(EncryptionKey, 'generateRandom', () => EncryptionKey.fromBytes(mockKey))
     .stdout()
     .command(['genkey'])
     .it('Generates a "random" encryption key', ctx => {

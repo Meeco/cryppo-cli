@@ -11,6 +11,7 @@
     "@meeco/cryppo": "^2.0.0",
     "@oclif/core": "^3",
     "@oclif/plugin-help": "^6",
+    "sinon": "^17.0.0",
     "tslib": "^2.6.2"
   },
   "devDependencies": {
@@ -28,7 +29,6 @@
     "oclif": "^4.0.3",
     "prettier": "^3.0.0",
     "shx": "^0.3.3",
-    "sinon": "^17.0.0",
     "ts-node": "^10.9.1",
     "typescript": "^5"
   },
@@ -78,7 +78,8 @@
     "pack": "oclif pack tarballs --no-xz --parallel",
     "pack-win": "oclif pack win",
     "pack-mac": "oclif pack macos",
-    "test": "nyc --extension .ts mocha --forbid-only \"test/**/*.test.ts\"",
+    "testcov": "nyc --extension .ts mocha --forbid-only \"test/**/*.test.ts\"",
+    "test": "mocha --forbid-only \"test/**/*.test.ts\"",
     "version": "oclif-dev readme && git add README.md"
   },
   "types": "dist/index.d.ts"
