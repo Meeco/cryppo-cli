@@ -37,7 +37,8 @@ export default class Genkeypair extends Command {
       await write(privateKeyOut, pair.privateKey);
       await write(publicKeyOut, pair.publicKey);
 
-      this.log('Wrote new key pair');
+      this.log(`Private key written to ${privateKeyOut}`);
+      this.log(`Public key written to ${publicKeyOut}`);
     } catch (error) {
       await handleException(error, this);
     }
