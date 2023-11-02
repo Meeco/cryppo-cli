@@ -8,7 +8,7 @@ import { readFileAsBuffer } from '../util/file';
 export default class Encrypt extends Command {
   static args = {};
 
-  static description = 'Encrypt a value (assumed to be UTF-8 encoded string).';
+  static description = 'Encrypt an UTF-8 encoded string with AES or RSA';
 
   static examples = [
     'encrypt -v "hello world" -k vm8CjugMda2zdjsI9W25nH-CY-84DDYoBxTFLwfKLDk=',
@@ -49,7 +49,11 @@ export default class Encrypt extends Command {
       } else if (publicKeyFile) {
         const publicKeyPem = bytesBufferToBinaryString(await readFileAsBuffer(publicKeyFile));
         const encrypted = await cryppo.encryptWithPublicKey({
-          data: utf8ToBytes(value),
+          // Please mind that while `data` in encryptWithKey is a list of bytes, here
+          // encryptWithPublicKey still takes a string, and not an array of bytes!
+          // This is not good because we can run into our old problems caused by
+          // implicit conversions between UTF8 and UTF16! (yl)
+          data: value,
           publicKeyPem
         });
         this.log(encrypted.serialized);
