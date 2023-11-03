@@ -1,5 +1,7 @@
 import { expect, test } from '@oclif/test';
 
+// TODO: Stub writing to files and check the contents of the files
+
 describe('genkeypair', () => {
   test
     .stdout()

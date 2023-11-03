@@ -1,39 +1,16 @@
-import { EncryptionKey, binaryStringToBytes } from '@meeco/cryppo';
+import { binaryStringToBytes, decodeSafe64 } from '@meeco/cryppo';
 import { expect, test } from '@oclif/test';
-// Sinon uses CommonJS modules, so esModuleInterop": true is required in tsconfig.json
-import sinon from 'sinon';
 
 describe('genkey', () => {
-  const mockKey: Uint8Array = binaryStringToBytes('vm8CjugMda2zdjsI9W25nHfugMdapYhb');
-  const base64EncodedKey = 'dm04Q2p1Z01kYTJ6ZGpzSTlXMjVuSGZ1Z01kYXBZaGI='; // from encodeSafe64
-
-  let stub;
-
-  beforeEach(() => {
-    stub = sinon.stub(EncryptionKey, 'generateRandom');
-    stub.callsFake(() => EncryptionKey.fromBytes(mockKey));
-  });
-
-  afterEach(() => {
-    stub.restore();
-  });
-
-  // test.it('foo', _ctx => {
-  //   expect(true).to.equal(true);
-  //   console.log(123);
-
-  //   const d: Uint8Array = binaryStringToBytes('vm8CjugMda2zdjsI9W25nHfugMdapYhb');
-  //   console.log(d);
-
-  //   console.log(EncryptionKey.fromBytes(d).serialize);
-  // });
-
   test
     .stdout()
     .command(['genkey'])
     .it('Generates a random encryption 256-bit key', ctx => {
       expect(ctx.stdout).to.contain('256-bit URL-Safe Base64 encoded key:');
-      expect(ctx.stdout).to.contain(base64EncodedKey);
+
+      const keyString = ctx.stdout.split('\n')[1].trim();
+      const key = binaryStringToBytes(decodeSafe64(keyString));
+      expect(key.length).to.equal(32);
     });
 
   test
@@ -41,7 +18,10 @@ describe('genkey', () => {
     .command(['genkey', '-l', '256'])
     .it('Generates a random encryption 256-bit key specifying the key length', ctx => {
       expect(ctx.stdout).to.contain('256-bit URL-Safe Base64 encoded key:');
-      expect(ctx.stdout).to.contain(base64EncodedKey);
+
+      const keyString = ctx.stdout.split('\n')[1].trim();
+      const key = binaryStringToBytes(decodeSafe64(keyString));
+      expect(key.length).to.equal(32);
     });
 
   test
@@ -49,6 +29,10 @@ describe('genkey', () => {
     .command(['genkey', '-l', '128'])
     .it('Generates a random encryption 128-bit key specifying the key length', ctx => {
       expect(ctx.stdout).to.contain('128-bit URL-Safe Base64 encoded key:');
+
+      const keyString = ctx.stdout.split('\n')[1].trim();
+      const key = binaryStringToBytes(decodeSafe64(keyString));
+      expect(key.length).to.equal(16);
     });
 
   test
@@ -56,6 +40,10 @@ describe('genkey', () => {
     .command(['genkey', '-l', '192'])
     .it('Generates a random encryption 192-bit key specifying the key length', ctx => {
       expect(ctx.stdout).to.contain('192-bit URL-Safe Base64 encoded key:');
+
+      const keyString = ctx.stdout.split('\n')[1].trim();
+      const key = binaryStringToBytes(decodeSafe64(keyString));
+      expect(key.length).to.equal(24);
     });
 
   test
