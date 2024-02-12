@@ -10,8 +10,7 @@ Meeco Encryption Library CLI
 [![License](https://img.shields.io/npm/l/cryppo-cli.svg)](https://github.com/Meeco/cryppo-cli/blob/master/package.json)
 
 <!-- toc -->
-
-- [Cryppo CLI](#cryppo-cli)
+* [Cryppo CLI](#cryppo-cli)
 <!-- tocstop -->
 
 ## Installation
@@ -49,32 +48,29 @@ $ cryppo verify -P public.pem myfile.signed.txt myfile.txt
 ```
 
 <!-- usage -->
-
 ```sh-session
 $ npm install -g cryppo-cli
 $ cryppo COMMAND
 running command...
 $ cryppo (--version)
-cryppo-cli/2.0.0 darwin-arm64 node-v18.16.0
+cryppo-cli/2.0.0 darwin-arm64 node-v20.11.0
 $ cryppo --help [COMMAND]
 USAGE
   $ cryppo COMMAND
 ...
 ```
-
 <!-- usagestop -->
 
 ## Commands
 
 <!-- commands -->
-
-- [`cryppo decrypt`](#cryppo-decrypt)
-- [`cryppo encrypt`](#cryppo-encrypt)
-- [`cryppo genkey`](#cryppo-genkey)
-- [`cryppo genkeypair`](#cryppo-genkeypair)
-- [`cryppo help [COMMANDS]`](#cryppo-help-commands)
-- [`cryppo sign DESTINATION FILE`](#cryppo-sign-destination-file)
-- [`cryppo verify DESTINATION FILE`](#cryppo-verify-destination-file)
+* [`cryppo decrypt`](#cryppo-decrypt)
+* [`cryppo encrypt`](#cryppo-encrypt)
+* [`cryppo genkey`](#cryppo-genkey)
+* [`cryppo genkeypair`](#cryppo-genkeypair)
+* [`cryppo help [COMMANDS]`](#cryppo-help-commands)
+* [`cryppo sign DESTINATION FILE`](#cryppo-sign-destination-file)
+* [`cryppo verify DESTINATION FILE`](#cryppo-verify-destination-file)
 
 ## `cryppo decrypt`
 
@@ -237,5 +233,4 @@ EXAMPLES
 ```
 
 _See code: [src/commands/verify.ts](https://github.com/Meeco/cryppo-cli/blob/v2.0.0/src/commands/verify.ts)_
-
 <!-- commandsstop -->
