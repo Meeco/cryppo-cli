@@ -64,7 +64,7 @@
     "fmt:fix": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\" *.json README.md",
     "lint:check": "eslint \"{src,test}/**/*.ts\"",
     "lint:fix": "eslint \"{src,test}/**/*.ts\" --fix",
-    "build": "shx rm -rf dist && tsc -b",
+    "build": "shx rm -rf dist && tsc -b; chmod 0777 ./node_modules/.bin/mocha",
     "postpack": "shx rm -f oclif.manifest.json",
     "posttest": "npm run lint:check",
     "prepack": "npm run build && oclif manifest && oclif readme",
