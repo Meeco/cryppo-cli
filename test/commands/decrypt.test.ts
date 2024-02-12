@@ -2,6 +2,7 @@
 import { expect, test } from '@oclif/test';
 // Sinon uses CommonJS modules, so esModuleInterop": true is required in tsconfig.json
 import sinon from 'sinon';
+
 import * as file from '../../src/util/file';
 
 // ./bin/run decrypt  -k sDZ9cmL497iI7Q8le4jEIm8dePmcMxQ0lrq9WMm_m4Q= -s Aes256Gcm.kHBlcUZvV2anI7A=.QUAAAAAFaXYADAAAAAAg6pBvpVPrnwwM6BUFYXQAEAAAAACm4WamM8VwFr4RGbDFQttbAmFkAAUAAABub25lAAA=
@@ -20,7 +21,6 @@ describe('decrypt with AES', () => {
 
 // ./bin/run decrypt -p priv.pem -s Rsa4096.E_7wTSc...
 describe('decrypt with RSA', () => {
-
   const pemPriv = `-----BEGIN RSA PRIVATE KEY-----
     MIIJKQIBAAKCAgEAzImclrUpBIxB+tCOk5tARtgoEt11xgIfaFpC5cufRdNF+g0I
     HeGD33neGVlis/BoI0goD0XdVrF5UpofSX0mHaKQnaSGz9wkP80NM5RyaXrrWUbJ
@@ -79,13 +79,11 @@ describe('decrypt with RSA', () => {
   let stub;
 
   beforeEach(() => {
-    // console.log("--- decrypt beforeEach ?????")
     stub = sinon.stub(file, 'readFileAsBuffer');
     stub.callsFake(_path => Promise.resolve(pemPriv) as any);
   });
 
   afterEach(() => {
-    // console.log("/--- decrypt afterEach ?????")
     stub.restore();
   });
 
