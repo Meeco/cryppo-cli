@@ -6,6 +6,7 @@ import sinon from 'sinon';
 import cryppo from '../../src/cryppo-wrapper';
 import * as file from '../../src/util/file';
 
+// ./bin/run encrypt -k XRwFdYZZUcgmHc7rPNcZdeN2As7xz86gg0Kcj7lGi3w=  -v "My Secret Data"
 describe('encrypt with AES', () => {
   const key = 'XRwFdYZZUcgmHc7rPNcZdeN2As7xz86gg0Kcj7lGi3w=';
   const decodedKey = EncryptionKey.fromSerialized(key);
@@ -31,7 +32,8 @@ describe('encrypt with AES', () => {
     });
 });
 
-describe('encrypt with RSA', async () => {
+// ./bin/run encrypt -P pub.pem  -v "My Secret Data"
+describe('encrypt with RSA', () => {
   const pemPub = `-----BEGIN PUBLIC KEY-----
     MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAzImclrUpBIxB+tCOk5tA
     RtgoEt11xgIfaFpC5cufRdNF+g0IHeGD33neGVlis/BoI0goD0XdVrF5UpofSX0m
@@ -47,7 +49,7 @@ describe('encrypt with RSA', async () => {
     4+/+7FT8WzyAtNBIvxM58jsCAwEAAQ==
     -----END PUBLIC KEY-----`;
 
-  const pemPriv = `-----BEGIN RSA PRIVATE KEY-----
+  const pemPriv: string = `-----BEGIN RSA PRIVATE KEY-----
     MIIJKQIBAAKCAgEAzImclrUpBIxB+tCOk5tARtgoEt11xgIfaFpC5cufRdNF+g0I
     HeGD33neGVlis/BoI0goD0XdVrF5UpofSX0mHaKQnaSGz9wkP80NM5RyaXrrWUbJ
     Eb5CLguhhgc36PUcOPUKNNKXCxgehc57cEKeJ2FIjwZanF7W41lmT0mTIewUpZGA
@@ -99,8 +101,6 @@ describe('encrypt with RSA', async () => {
     Te1+lgwTD0v/B2Osa8545X16tLMthvejmC725zMkAiiEe40JIwAYX/RQ0m/5
     -----END RSA PRIVATE KEY-----`;
 
-  const privateKeyPem = bytesBufferToBinaryString((await Promise.resolve(pemPriv)) as any);
-
   let stub;
 
   beforeEach(() => {
@@ -119,7 +119,7 @@ describe('encrypt with RSA', async () => {
       expect(ctx.stdout).to.contain('Rsa4096.');
       const serialized = ctx.stdout;
       const decrypted = await cryppo.decryptSerializedWithPrivateKey({
-        privateKeyPem,
+        privateKeyPem: pemPriv,
         serialized
       });
 
