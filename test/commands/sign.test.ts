@@ -1,10 +1,11 @@
-// import { binaryStringToBytesBuffer } from '@meeco/cryppo';
 import { expect, test } from '@oclif/test';
-// Sinon uses CommonJS modules, so esModuleInterop": true is required in tsconfig.json
 import * as fs from 'node:fs';
+// Sinon uses CommonJS modules, so esModuleInterop": true is required in tsconfig.json
 import sinon from 'sinon';
 
 import * as file from '../../src/util/file';
+
+// TODO: Stub writing to files and check the contents of the files
 
 // ./bin/run sign signature.out file_to_sign.txt -p priv.pem
 describe('Sign data with a private key', () => {
@@ -61,13 +62,13 @@ describe('Sign data with a private key', () => {
     -----END RSA PRIVATE KEY-----`;
 
   const dataToSign = 'sign me';
-  const fileWithSignature = 'signature.out';
+  const fileForSignature = 'signature.out';
 
   let stub;
 
   beforeEach(() => {
-    if (fs.existsSync(fileWithSignature)) {
-      fs.unlinkSync(fileWithSignature);
+    if (fs.existsSync(fileForSignature)) {
+      fs.unlinkSync(fileForSignature);
     }
 
     stub = sinon.stub(file, 'readFileAsBuffer');
@@ -85,17 +86,16 @@ describe('Sign data with a private key', () => {
 
   afterEach(() => {
     stub.restore();
-    if (fs.existsSync(fileWithSignature)) {
-      fs.unlinkSync(fileWithSignature);
+    if (fs.existsSync(fileForSignature)) {
+      fs.unlinkSync(fileForSignature);
     }
   });
 
   test
     .stdout()
-    .command(['sign', fileWithSignature, 'file_to_sign.txt', '-p', 'priv.pem'])
+    .command(['sign', fileForSignature, 'file_to_sign.txt', '-p', 'priv.pem'])
     .it('Sign data with an RSA private key', async ctx => {
       expect(ctx.stdout).to.contain('Signed contents written');
-
-      expect(fs.existsSync(fileWithSignature)).to.equal(true);
+      expect(fs.existsSync(fileForSignature)).to.equal(true);
     });
 });
