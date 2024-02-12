@@ -9,7 +9,8 @@ import * as file from '../../src/util/file';
 describe('decrypt with AES', () => {
   const key = 'sDZ9cmL497iI7Q8le4jEIm8dePmcMxQ0lrq9WMm_m4Q=';
 
-  const encryptedAndSeriazed = 'Aes256Gcm.kHBlcUZvV2anI7A=.QUAAAAAFaXYADAAAAAAg6pBvpVPrnwwM6BUFYXQAEAAAAACm4WamM8VwFr4RGbDFQttbAmFkAAUAAABub25lAAA=';
+  const encryptedAndSeriazed =
+    'Aes256Gcm.kHBlcUZvV2anI7A=.QUAAAAAFaXYADAAAAAAg6pBvpVPrnwwM6BUFYXQAEAAAAACm4WamM8VwFr4RGbDFQttbAmFkAAUAAABub25lAAA=';
 
   test
     .stdout()

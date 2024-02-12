@@ -10,7 +10,8 @@ Meeco Encryption Library CLI
 [![License](https://img.shields.io/npm/l/cryppo-cli.svg)](https://github.com/Meeco/cryppo-cli/blob/master/package.json)
 
 <!-- toc -->
-* [Cryppo CLI](#cryppo-cli)
+
+- [Cryppo CLI](#cryppo-cli)
 <!-- tocstop -->
 
 ## Installation
@@ -21,7 +22,7 @@ Meeco Encryption Library CLI
 4. Change directory to the `bin` folder.
 5. Test that everything is working correctly by running the command `./cryppo genkey`.
 6. Optionally on Mac or Linux add an alias to the cryppo executeable with `echo "alias cryppo=\"${PWD}/cryppo\"" >> ~/.zshrc`. (if you are not
-using zshell replace `.zshrc` with `.bash_profile` or `.bashrc` or whatever your system uses https://www.linuxjournal.com/content/profiles-and-rc-files)
+   using zshell replace `.zshrc` with `.bash_profile` or `.bashrc` or whatever your system uses https://www.linuxjournal.com/content/profiles-and-rc-files)
 7. Open a new terminal window and you should be able to now use the `cryppo` command from anywhere and you'll no longer need to reference it relatively.
 
 ## Usage
@@ -48,6 +49,7 @@ $ cryppo verify -P public.pem myfile.signed.txt myfile.txt
 ```
 
 <!-- usage -->
+
 ```sh-session
 $ npm install -g cryppo-cli
 $ cryppo COMMAND
@@ -59,18 +61,20 @@ USAGE
   $ cryppo COMMAND
 ...
 ```
+
 <!-- usagestop -->
 
 ## Commands
 
 <!-- commands -->
-* [`cryppo decrypt`](#cryppo-decrypt)
-* [`cryppo encrypt`](#cryppo-encrypt)
-* [`cryppo genkey`](#cryppo-genkey)
-* [`cryppo genkeypair`](#cryppo-genkeypair)
-* [`cryppo help [COMMANDS]`](#cryppo-help-commands)
-* [`cryppo sign DESTINATION FILE`](#cryppo-sign-destination-file)
-* [`cryppo verify DESTINATION FILE`](#cryppo-verify-destination-file)
+
+- [`cryppo decrypt`](#cryppo-decrypt)
+- [`cryppo encrypt`](#cryppo-encrypt)
+- [`cryppo genkey`](#cryppo-genkey)
+- [`cryppo genkeypair`](#cryppo-genkeypair)
+- [`cryppo help [COMMANDS]`](#cryppo-help-commands)
+- [`cryppo sign DESTINATION FILE`](#cryppo-sign-destination-file)
+- [`cryppo verify DESTINATION FILE`](#cryppo-verify-destination-file)
 
 ## `cryppo decrypt`
 
@@ -233,4 +237,5 @@ EXAMPLES
 ```
 
 _See code: [src/commands/verify.ts](https://github.com/Meeco/cryppo-cli/blob/v2.0.0/src/commands/verify.ts)_
+
 <!-- commandsstop -->

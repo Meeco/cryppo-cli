@@ -21,7 +21,8 @@ describe('verify data with a public key', () => {
 
   const outFile = 'sign me';
   const fileWithSignature = 'signature.out';
-  const signature = 'Sign.Rsa2048.JV-5HbWVi7D1MS-8VBm6-gWrS3j5gqGq6wFRajEu_mRTFb32ekDkjnmCOI2fTEYAGzPEAAnM41rHvWc6Rsqh7pTT7iGCWfHuvJx56jQ-9BoVqiSHMukB6MzRm4FxAo-hWRv2fGR6lxKYM0bjVqF3J3oTF1ba59ps5ARefI34fdR3BZbLC0wb-Bw942hjqy0iaBfuOhhnLef4ZW097u4BKuKC11BIGDHI2azoh9QZnUCQAKiyjIBkJJCvpQ7T9kUr-aZv8jLTtINpmOicI-2iOyJuybTmefudbyNZN7GNqCKlYDH_BzbxLp-6RS-CbllHbxBMBlX5Wy6WNJyy3ikJZA==.c2lnbiBtZQ==';
+  const signature =
+    'Sign.Rsa2048.JV-5HbWVi7D1MS-8VBm6-gWrS3j5gqGq6wFRajEu_mRTFb32ekDkjnmCOI2fTEYAGzPEAAnM41rHvWc6Rsqh7pTT7iGCWfHuvJx56jQ-9BoVqiSHMukB6MzRm4FxAo-hWRv2fGR6lxKYM0bjVqF3J3oTF1ba59ps5ARefI34fdR3BZbLC0wb-Bw942hjqy0iaBfuOhhnLef4ZW097u4BKuKC11BIGDHI2azoh9QZnUCQAKiyjIBkJJCvpQ7T9kUr-aZv8jLTtINpmOicI-2iOyJuybTmefudbyNZN7GNqCKlYDH_BzbxLp-6RS-CbllHbxBMBlX5Wy6WNJyy3ikJZA==.c2lnbiBtZQ==';
 
   let stub;
 

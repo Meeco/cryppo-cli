@@ -35,7 +35,12 @@
   "engines": {
     "node": ">=18.0.0"
   },
-  "files": ["/bin", "/lib", "/npm-shrinkwrap.json", "/oclif.manifest.json"],
+  "files": [
+    "/bin",
+    "/lib",
+    "/npm-shrinkwrap.json",
+    "/oclif.manifest.json"
+  ],
   "homepage": "https://github.com/Meeco/cryppo-cli",
   "keywords": [
     "Meeco",
@@ -53,7 +58,9 @@
     "bin": "cryppo",
     "dirname": "cryppo",
     "commands": "./dist/commands",
-    "plugins": ["@oclif/plugin-help"],
+    "plugins": [
+      "@oclif/plugin-help"
+    ],
     "macos": {
       "identifier": "me.meeco.cryppo"
     }
