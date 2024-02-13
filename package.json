@@ -9,14 +9,14 @@
   "bugs": "https://github.com/Meeco/cryppo-cli/issues",
   "dependencies": {
     "@meeco/cryppo": "^2.0.0",
-    "@oclif/core": "^3",
-    "@oclif/plugin-help": "^6",
+    "@oclif/core": "^3.19.1",
+    "@oclif/plugin-help": "^6.0.12",
     "sinon": "^17.0.1",
     "tslib": "^2.6.2"
   },
   "devDependencies": {
     "@oclif/prettier-config": "^0.2.1",
-    "@oclif/test": "^3",
+    "@oclif/test": "^3.1.16",
     "@types/chai": "^4.2.11",
     "@types/mocha": "^10.0.6",
     "@types/node": "^20.11.17",
@@ -26,7 +26,7 @@
     "eslint-config-oclif-typescript": "^3.0.47",
     "mocha": "^10.3.0",
     "nyc": "^15.1.0",
-    "oclif": "^4.0.3",
+    "oclif": "^4.4.11",
     "prettier": "^3.2.5",
     "shx": "^0.3.3",
     "ts-node": "^10.9.2",
