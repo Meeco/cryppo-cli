@@ -53,7 +53,7 @@
     "key derivation"
   ],
   "license": "MIT",
-  "main": "lib/index.js",
+  "main": "dist/index.js",
   "oclif": {
     "bin": "cryppo",
     "dirname": "cryppo",
