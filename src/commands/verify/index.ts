@@ -1,9 +1,9 @@
 import { bytesBufferToBinaryString } from '@meeco/cryppo';
 import { Args, Command, Flags } from '@oclif/core';
 
-import cryppo from '../cryppo-wrapper';
-import { handleException } from '../handle-exception';
-import { readFileAsBuffer, writeFileContents } from '../util/file';
+import cryppo from '../../cryppo-wrapper';
+import { handleException } from '../../handle-exception';
+import { readFileAsBuffer, writeFileContents } from '../../util/file';
 
 export default class Verify extends Command {
   static args = {

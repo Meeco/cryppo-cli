@@ -1,9 +1,9 @@
 import { EncryptionKey, bytesBufferToBinaryString } from '@meeco/cryppo';
 import { Command, Flags } from '@oclif/core';
 
-import cryppo from '../cryppo-wrapper';
-import { handleException } from '../handle-exception';
-import { readFileAsBuffer } from '../util/file';
+import cryppo from '../../cryppo-wrapper';
+import { handleException } from '../../handle-exception';
+import { readFileAsBuffer } from '../../util/file';
 
 export default class Decrypt extends Command {
   static args = {};

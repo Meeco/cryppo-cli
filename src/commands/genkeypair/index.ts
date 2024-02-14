@@ -2,8 +2,8 @@ import { Command, Flags } from '@oclif/core';
 import { writeFile } from 'node:fs';
 import { promisify } from 'node:util';
 
-import cryppo from '../cryppo-wrapper';
-import { handleException } from '../handle-exception';
+import cryppo from '../../cryppo-wrapper';
+import { handleException } from '../../handle-exception';
 
 export default class Genkeypair extends Command {
   static args = {};
