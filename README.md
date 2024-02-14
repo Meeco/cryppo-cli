@@ -5,24 +5,42 @@
 Meeco Encryption Library CLI
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
-[![Version](https://img.shields.io/npm/v/cryppo-cli.svg)](https://npmjs.org/package/cryppo-cli)
-[![Downloads/week](https://img.shields.io/npm/dw/cryppo-cli.svg)](https://npmjs.org/package/cryppo-cli)
 [![License](https://img.shields.io/npm/l/cryppo-cli.svg)](https://github.com/Meeco/cryppo-cli/blob/master/package.json)
-
-<!-- toc -->
-* [Cryppo CLI](#cryppo-cli)
-<!-- tocstop -->
 
 ## Installation
 
-1. Download the gzip file appriate for your system from the [releases page](https://github.com/Meeco/cryppo-cli/releases).
-2. Unzip the downloaded file to a destination of your choosing.
-3. Open up a terminal window inside the extracted `cryppo` folder.
-4. Change directory to the `bin` folder.
-5. Test that everything is working correctly by running the command `./cryppo genkey`.
-6. Optionally on Mac or Linux add an alias to the cryppo executeable with `echo "alias cryppo=\"${PWD}/cryppo\"" >> ~/.zshrc`. (if you are not
-   using zshell replace `.zshrc` with `.bash_profile` or `.bashrc` or whatever your system uses https://www.linuxjournal.com/content/profiles-and-rc-files)
-7. Open a new terminal window and you should be able to now use the `cryppo` command from anywhere and you'll no longer need to reference it relatively.
+You can install this package in 3 different ways:
+
+1. Use installers for MacOS or Windows from the [releases page](https://github.com/Meeco/cryppo-cli/releases).
+   You don't need to have Node on your system to run Cryppo, the package already contains Node.
+3. Use tarballs with prebuilt packages for you OS and hardware platform from
+   [releases page](https://github.com/Meeco/cryppo-cli/releases).You don't need to have Node on your system to run
+   Cryppo, the package already contains Node.
+2. As a regular NPM package. You need to have Node on your system to run it
+
+### Installers for MacOS or Windows
+
+1. Download an installer for your OS and your platform from the [releases page](https://github.com/Meeco/cryppo-cli/releases).
+   For example, for MacOS on Apple Silicon the installer might look like `cryppo-v2.1.0-78d2298-arm64.pkg`
+2. Double-click on the installer and follow instruction
+2. Open a terminal. The `cryppo` command should be in the path. Check it by running `cryppo` or `cryppo genkey`
+
+### Tarballs for MacOS, Windows, or Linux
+
+1. Download a gzip file appriate for your system from the [releases page](https://github.com/Meeco/cryppo-cli/releases).
+   For example, for MacOS on Apple Silicon the installer might look like `cryppo-v2.1.0-413e854-linux-arm64.tar.gz`
+2. Unzip the file: `tar xvfz cryppo-v2.1.0-413e854-linux-arm64.tar.gz`
+3. Change to directory with Cryppo `cd ./cryppo`
+4. Test by running `./bin/cryppo genkey` or `./bin/cryppo`
+
+### An NPM Package
+
+0. Make sure you have `node` and `yarn` installed
+1. Clone Cryppo-CLI: `git clone https://github.com/Meeco/cryppo-cli.git`
+2. `cd cryppo-cli`
+3. Install dependencies: `yarn install`
+4. Build the project: `yarn run build`
+5. Test by running `./bin/cryppo genkey` or `./bin/cryppo`
 
 ## Usage
 
