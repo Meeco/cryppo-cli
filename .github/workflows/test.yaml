@@ -6,11 +6,6 @@ on:
 
 jobs:
 
-  build:
-    strategy:
-      matrix:
-        node-version: [20.x]
-
   unit-tests:
     uses: oclif/github-workflows/.github/workflows/unitTest.yml@main
 
