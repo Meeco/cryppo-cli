@@ -5,7 +5,6 @@
 Meeco Encryption Library CLI
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
-[![License](https://img.shields.io/npm/l/cryppo-cli.svg)](https://github.com/Meeco/cryppo-cli/blob/master/package.json)
 
 ## Installation
 
@@ -25,7 +24,7 @@ You can install this package in 3 different ways:
 2. Double-click on the installer and follow instruction
 2. Open a terminal. The `cryppo` command should be in the path. Check it by running `cryppo` or `cryppo genkey`
 
-### Tarballs for MacOS, Windows, or Linux
+### Installing with Tarballs for MacOS, Windows, or Linux
 
 1. Download a gzip file appriate for your system from the [releases page](https://github.com/Meeco/cryppo-cli/releases).
    For example, for MacOS on Apple Silicon the installer might look like `cryppo-v2.1.0-413e854-linux-arm64.tar.gz`
@@ -33,7 +32,7 @@ You can install this package in 3 different ways:
 3. Change to directory with Cryppo `cd ./cryppo`
 4. Test by running `./bin/cryppo genkey` or `./bin/cryppo`
 
-### An NPM Package
+### Installing as an NPM Package
 
 0. Make sure you have `node` and `yarn` installed
 1. Clone Cryppo-CLI: `git clone https://github.com/Meeco/cryppo-cli.git`
