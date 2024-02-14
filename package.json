@@ -67,11 +67,14 @@
   },
   "repository": "Meeco/cryppo-cli",
   "scripts": {
-    "build": "shx rm -rf dist && tsc -b; chmod 0777 ./node_modules/.bin/mocha",
+    "build": "shx rm -rf dist && tsc -b",
+    "lint": "eslint . --ext .ts",
     "postpack": "shx rm -f oclif.manifest.json",
-    "posttest": "npm run lint:check",
-    "prepack": "npm run build && oclif manifest && oclif readme",
+    "posttest": "yarn lint",
+    "prepack": "yarn build && oclif manifest && oclif readme",
+    "prepare": "yarn build",
     "test": "mocha --forbid-only \"test/**/*.test.ts\"",
+    "version": "oclif readme && git add README.md",
 
     "fmt:check": "prettier -c \"src/**/*.ts\" \"test/**/*.ts\"",
     "fmt:fix": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\" *.json README.md",
