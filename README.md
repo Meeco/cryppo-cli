@@ -95,7 +95,7 @@ EXAMPLES
   $ cryppo decrypt -s "Rsa4096.bJjV2g_RBZKeyqBr-dSjPAc3qtkTgd0=.LS0tCnt9Cg==" -p private.pem
 ```
 
-_See code: [src/commands/decrypt.ts](https://github.com/Meeco/cryppo-cli/blob/v2.1.0/src/commands/decrypt.ts)_
+_See code: [src/commands/decrypt/index.ts](https://github.com/Meeco/cryppo-cli/blob/v2.1.0/src/commands/decrypt/index.ts)_
 
 ## `cryppo encrypt`
 
@@ -120,7 +120,7 @@ EXAMPLES
   encrypt -v "hello world" -P public-key.pem
 ```
 
-_See code: [src/commands/encrypt.ts](https://github.com/Meeco/cryppo-cli/blob/v2.1.0/src/commands/encrypt.ts)_
+_See code: [src/commands/encrypt/index.ts](https://github.com/Meeco/cryppo-cli/blob/v2.1.0/src/commands/encrypt/index.ts)_
 
 ## `cryppo genkey`
 
@@ -142,7 +142,7 @@ EXAMPLES
   $ cryppo genkey -l 192
 ```
 
-_See code: [src/commands/genkey.ts](https://github.com/Meeco/cryppo-cli/blob/v2.1.0/src/commands/genkey.ts)_
+_See code: [src/commands/genkey/index.ts](https://github.com/Meeco/cryppo-cli/blob/v2.1.0/src/commands/genkey/index.ts)_
 
 ## `cryppo genkeypair`
 
@@ -164,7 +164,7 @@ EXAMPLES
   $ cryppo genkeypair -p private.pem -P public.pem
 ```
 
-_See code: [src/commands/genkeypair.ts](https://github.com/Meeco/cryppo-cli/blob/v2.1.0/src/commands/genkeypair.ts)_
+_See code: [src/commands/genkeypair/index.ts](https://github.com/Meeco/cryppo-cli/blob/v2.1.0/src/commands/genkeypair/index.ts)_
 
 ## `cryppo help [COMMANDS]`
 
@@ -208,7 +208,7 @@ EXAMPLES
   $ cryppo sign -p private.pem my_file.txt my_file.signed.txt
 ```
 
-_See code: [src/commands/sign.ts](https://github.com/Meeco/cryppo-cli/blob/v2.1.0/src/commands/sign.ts)_
+_See code: [src/commands/sign/index.ts](https://github.com/Meeco/cryppo-cli/blob/v2.1.0/src/commands/sign/index.ts)_
 
 ## `cryppo verify DESTINATION FILE`
 
@@ -232,5 +232,5 @@ EXAMPLES
   $ cryppo verify -P public.pem my_file.signed.txt my_file.txt
 ```
 
-_See code: [src/commands/verify.ts](https://github.com/Meeco/cryppo-cli/blob/v2.1.0/src/commands/verify.ts)_
+_See code: [src/commands/verify/index.ts](https://github.com/Meeco/cryppo-cli/blob/v2.1.0/src/commands/verify/index.ts)_
 <!-- commandsstop -->
